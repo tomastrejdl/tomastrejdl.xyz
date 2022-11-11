@@ -1,3 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* The base layer is for things like reset rules or default styles applied to plain HTML elements.*/
+@tailwind components; /* The components layer is for class-based styles that you want to be able to override with utilities.*/
+@tailwind utilities; /* The utilities layer is for small, single-purpose classes that should always take precedence over any other styles.*/
+
+:root {
+  --blue: #3b82f6;
+  --fuchsia: #d946ef;
+  --teal: #14b8a6;
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100;
+  }
+  p a {
+    @apply hover:magic-text inline-block font-medium text-blue-500 underline transition hover:scale-105;
+  }
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+@layer components {
+  .magic {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+      to right,
+      var(--blue),
+      var(--fuchsia),
+      var(--teal),
+      var(--blue)
+    );
+    background-size: 200%;
+  }
+
+  .magic-text {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+      to right,
+      var(--blue),
+      var(--fuchsia),
+      var(--teal),
+      var(--blue)
+    );
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
