@@ -1,5 +1,35 @@
 # Create T3 App
 
+## TODO
+
+- [ ] partytown
+- [ ] cms (Sanity?, Contentful?, Prismic?)
+- [ ] mdx
+- [ ] Next 13 app directory
+- [ ] stack page
+- [ ] about page with photo
+- [ ] blog page with article search as on leerob.io/blog
+- [ ] blog article page
+- [ ] newsletter
+- [ ] projects page
+- [ ] project detail page
+- [ ] page transition animations
+- [ ] scrolling animations / element entering page animations
+- [ ] animated dark mode switching
+- [ ] caching
+- [ ] SEO
+- [ ] sitemap
+- [ ] robots.txt
+- [ ] 404 page
+- [ ] style all base elements
+- [ ] no css, everything is in tailwind config
+- [ ] arrow for external links as on brianlovin.com
+- [ ] lighthouse pwa
+- [ ] 
+
+
+
+
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
 ## What's next? How do I make an app with this?
