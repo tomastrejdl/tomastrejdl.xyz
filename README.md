@@ -26,6 +26,7 @@
 - [ ] arrow for external links as on brianlovin.com
 - [ ] lighthouse pwa
 
+
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
 ## What's next? How do I make an app with this?
