@@ -25,10 +25,6 @@
 - [ ] no css, everything is in tailwind config
 - [ ] arrow for external links as on brianlovin.com
 - [ ] lighthouse pwa
-- [ ] 
-
-
-
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
 
