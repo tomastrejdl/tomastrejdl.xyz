@@ -27,6 +27,7 @@ const config = {
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } },
     ],
+    nextScriptWorkers: true,
   },
   async headers() {
     return [
