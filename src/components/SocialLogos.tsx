@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useRouter } from 'next/dist/client/router'
 import { useState } from 'react'
 import { DribbbleLogo } from './icons/DribbbleLogo'
 import { GitHubLogo } from './icons/GitHubLogo'

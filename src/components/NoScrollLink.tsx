@@ -1,5 +1,5 @@
-import Link, { LinkProps } from 'next/link'
-import React, { ReactNode } from 'react'
+import Link, { type LinkProps } from 'next/link'
+import React, { type ReactNode } from 'react'
 
 interface IProps extends LinkProps {
   children: ReactNode
