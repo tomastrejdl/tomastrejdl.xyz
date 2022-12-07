@@ -32,7 +32,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="dns-prefetch" href="https://static.highlight.io" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Partytown debug={true} forward={['dataLayer.push']} />
+        <Partytown debug={false} forward={['dataLayer.push']} />
       </Head>
       <SessionProvider session={session}>
         <ErrorBoundary showDialog>
