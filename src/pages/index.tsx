@@ -1,4 +1,5 @@
 import { type NextPage } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 import MagicText from '../components/MagicText'
 import SocialLogos from '../components/SocialLogos'
@@ -6,6 +7,13 @@ import SocialLogos from '../components/SocialLogos'
 const HomePage: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Tomáš Trejdl - UX Designer and full-stack developer</title>
+        <meta
+          name="description"
+          content="UX Designer and full-stack developer"
+        />
+      </Head>
       <HeroSection />
     </>
   )

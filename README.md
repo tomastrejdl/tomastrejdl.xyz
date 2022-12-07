@@ -25,6 +25,7 @@
 - [ ] no css, everything is in tailwind config
 - [ ] arrow for external links as on brianlovin.com
 - [ ] lighthouse pwa
+- [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
