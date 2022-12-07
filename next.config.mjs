@@ -1,38 +1,43 @@
+import NextBundleAnalyzer from '@next/bundle-analyzer'
+const withBundleAnalyzer = NextBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 // @ts-check
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
  */
-!process.env.SKIP_ENV_VALIDATION && (await import("./src/env/server.mjs"));
+!process.env.SKIP_ENV_VALIDATION && (await import('./src/env/server.mjs'))
 
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ['en'],
+    defaultLocale: 'en',
   },
   images: {
     domains: [
-      "example.com", // Example domain
+      'example.com', // Example domain
     ],
   },
   experimental: {
     fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['latin'] } }
-    ]
+      { loader: '@next/font/google', options: { subsets: ['latin'] } },
+    ],
   },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: '/(.*)',
         headers: securityHeaders,
       },
-    ];
+    ]
   },
-};
-export default config;
+}
+export default withBundleAnalyzer(config)
 
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
@@ -44,42 +49,42 @@ const ContentSecurityPolicy = `
     media-src 'none';
     connect-src *;
     font-src 'self';
-`;
+`
 
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
-    key: "Content-Security-Policy",
-    value: ContentSecurityPolicy.replace(/\n/g, ""),
+    key: 'Content-Security-Policy',
+    value: ContentSecurityPolicy.replace(/\n/g, ''),
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
   {
-    key: "Referrer-Policy",
-    value: "origin-when-cross-origin",
+    key: 'Referrer-Policy',
+    value: 'origin-when-cross-origin',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   {
-    key: "X-Frame-Options",
-    value: "DENY",
+    key: 'X-Frame-Options',
+    value: 'DENY',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
   {
-    key: "X-Content-Type-Options",
-    value: "nosniff",
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control
   {
-    key: "X-DNS-Prefetch-Control",
-    value: "on",
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
   {
-    key: "Strict-Transport-Security",
-    value: "max-age=31536000; includeSubDomains; preload",
+    key: 'Strict-Transport-Security',
+    value: 'max-age=31536000; includeSubDomains; preload',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy
   {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=()",
+    key: 'Permissions-Policy',
+    value: 'camera=(), microphone=(), geolocation=()',
   },
-];
+]
