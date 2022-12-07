@@ -41,10 +41,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
                 {/* <Footer /> */}
               </div>
             </div>
-            <Analytics />
           </ThemeProvider>
         </ErrorBoundary>
       </SessionProvider>
+      <Analytics />
     </>
   )
 }
