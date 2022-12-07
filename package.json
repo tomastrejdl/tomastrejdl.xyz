@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.7.3",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@highlight-run/react": "^1.2.1",
