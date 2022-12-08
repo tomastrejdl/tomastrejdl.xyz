@@ -40,6 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 # next-pwa service worker files generated at build time
-/public/sw.js
-/public/workbox-*.js
-/public/fallback-*.js
+/public/sw.js*
+/public/workbox-*.js*
+/public/fallback-*.js*
