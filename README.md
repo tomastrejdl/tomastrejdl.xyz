@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] partytown
+- [x] partytown
 - [ ] cms (Sanity?, Contentful?, Prismic?)
 - [ ] mdx
 - [ ] Next 13 app directory
@@ -24,10 +24,10 @@
 - [ ] style all base elements
 - [ ] no css, everything is in tailwind config
 - [ ] arrow for external links as on brianlovin.com
-- [ ] lighthouse pwa
+- [x] lighthouse pwa
 - [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 - [ ] Turbopack
-- [ ] preact
+- [x] preact
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
