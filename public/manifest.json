@@ -1,9 +1,10 @@
 {
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "tomastrejdl.xyz",
+  "id": "https://tomastrejdl.xyz",
   "description": "UX Designer and full-stack developer",
   "short_name": "tomastrejdl",
   "start_url": "/",
-  "lang": "en",
   "theme_color": "#171717",
   "display": "minimal-ui",
   "background_color": "#171717",
