@@ -1,4 +1,7 @@
-import withPWA from 'next-pwa'
+import NextPWA from 'next-pwa'
+const withPWA = NextPWA({
+  dest: 'public',
+})
 
 import NextBundleAnalyzer from '@next/bundle-analyzer'
 const withBundleAnalyzer = NextBundleAnalyzer({
