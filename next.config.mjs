@@ -1,3 +1,5 @@
+import withPWA from 'next-pwa'
+
 import NextBundleAnalyzer from '@next/bundle-analyzer'
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -38,7 +40,7 @@ const config = {
     ]
   },
 }
-export default withBundleAnalyzer(config)
+export default withBundleAnalyzer(withPWA(config))
 
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
