@@ -1,6 +1,7 @@
 import NextPWA from 'next-pwa'
 const withPWA = NextPWA({
   dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
 })
 
 import NextBundleAnalyzer from '@next/bundle-analyzer'
@@ -41,17 +42,6 @@ const config = {
         headers: securityHeaders,
       },
     ]
-  },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      })
-    }
-
-    return config
   },
 }
 export default withBundleAnalyzer(withPWA(config))

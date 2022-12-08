@@ -27,7 +27,7 @@
 - [x] lighthouse pwa
 - [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 - [ ] Turbopack
-- [x] preact
+- [ ] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
