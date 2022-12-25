@@ -3,7 +3,7 @@
 ## TODO
 
 - [x] partytown
-- [ ] cms (Sanity?, Contentful?, Prismic?)
+- [ ] cms (Sanity?, Contentful?, Prismic?, Storyblok?)
 - [ ] mdx
 - [ ] Next 13 app directory
 - [ ] stack page
@@ -28,6 +28,7 @@
 - [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 - [ ] Turbopack
 - [ ] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
+- [ ] use Pantone Color of the Year as primary color
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
