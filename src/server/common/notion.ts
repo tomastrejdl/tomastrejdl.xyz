@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { env } from '../../env/server.mjs'
 import remarkGfm from 'remark-gfm'
 import type { ImageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import { createWriteStream, mkdirSync } from 'fs'
+import { createWriteStream, mkdirSync, readdirSync } from 'fs'
 import fetch from 'node-fetch'
 import { join } from 'path'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -158,28 +158,31 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const mdblocks = await n2m.pageToMarkdown(item.id)
   let mdString = n2m.toMarkdownString(mdblocks)
 
-  // if (env.NODE_ENV === 'production') {
-  const getImagesFromBlock = (block: MdBlock): string[] => {
-    const imageUrls: string[] = []
-    if (block.type === 'image') {
-      imageUrls.push(block.parent.slice(4, -1))
-    }
-    if (block.children)
-      imageUrls.push(
-        ...block.children.map((child) => getImagesFromBlock(child)).flat()
-      )
+  if (env.NODE_ENV === 'production') {
+    const getImagesFromBlock = (block: MdBlock): string[] => {
+      const imageUrls: string[] = []
+      if (block.type === 'image') {
+        imageUrls.push(block.parent.slice(4, -1))
+      }
+      if (block.children)
+        imageUrls.push(
+          ...block.children.map((child) => getImagesFromBlock(child)).flat()
+        )
 
-    return imageUrls
+      return imageUrls
+    }
+
+    const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
+
+    const newImageUrls = await fetchImages(imageUrls)
+
+    newImageUrls.forEach(
+      ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
+    )
   }
 
-  const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
-
-  const newImageUrls = await fetchImages(imageUrls)
-
-  newImageUrls.forEach(
-    ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
-  )
-  // }
+  console.log('\nprocess.cwd: ', process.cwd())
+  console.log('current dir: ', readdirSync('.'))
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
