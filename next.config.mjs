@@ -25,10 +25,15 @@ const config = {
     defaultLocale: 'en',
   },
   images: {
-    domains: [
-      'example.com', // Example domain
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+        pathname: '/secure.notion-static.com/**',
+      },
     ],
   },
+  pageExtensions: ['tsx', 'mdx'],
   experimental: {
     fontLoaders: [
       { loader: '@next/font/google', options: { subsets: ['latin'] } },

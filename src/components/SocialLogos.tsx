@@ -32,12 +32,6 @@ const links: { name: string; href: string; icon: JSX.Element }[] = [
 const SocialLogos = (): JSX.Element => {
   const [selected, setSelected] = useState<string | null>(null)
 
-  const spring = {
-    type: 'spring',
-    stiffness: 500,
-    damping: 30,
-  }
-
   return (
     <nav className="flex">
       {links.map(({ name, href, icon }) => (
@@ -47,7 +41,7 @@ const SocialLogos = (): JSX.Element => {
           key={name}
         >
           <Link key={name} href={href}>
-            <div className="group p-4">
+            <div className="p-4">
               <div className="relative z-10">{icon}</div>
               <AnimatePresence>
                 {selected === name && (
@@ -62,7 +56,11 @@ const SocialLogos = (): JSX.Element => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={spring}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 500,
+                      damping: 30,
+                    }}
                   />
                 )}
               </AnimatePresence>

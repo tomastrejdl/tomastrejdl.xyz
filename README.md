@@ -29,6 +29,7 @@
 - [ ] Turbopack
 - [ ] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
 - [ ] use Pantone Color of the Year as primary color
+- [ ] add [next-translate](https://github.com/aralroca/next-translate)
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.

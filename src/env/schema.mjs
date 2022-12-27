@@ -7,7 +7,7 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   // DATABASE_URL: z.string().url(),
-  NODE_ENV: z.enum(["development", "test", "production"]),
+  NODE_ENV: z.enum(['development', 'test', 'production']),
   // NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.preprocess(
     // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
@@ -16,7 +16,9 @@ export const serverSchema = z.object({
     // VERCEL_URL doesnt include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string() : z.string().url()
   ),
-});
+  NOTION_TOKEN: z.string().length(50),
+  DATABASE_ID: z.string().length(32),
+})
 
 /**
  * Specify your client-side environment variables schema here.
