@@ -10,7 +10,7 @@ export default function Index({
   return (
     <BlogLayout>
       <ul className="mx-auto max-w-sm">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li key={item.slug} className="mt-2 px-4 py-2">
             {item.cover && (
               <Image
@@ -19,6 +19,7 @@ export default function Index({
                 height={200}
                 alt="Project cover"
                 className="object-cover"
+                priority={index < 5}
               />
             )}
             <Link href={`/projects/${item.slug}`} className="hover:underline">

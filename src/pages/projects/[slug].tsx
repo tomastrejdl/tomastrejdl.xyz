@@ -6,7 +6,8 @@ import { getAllPublished, getSingleItem } from '../../server/common/notion'
 import Image from 'next/image'
 
 const components = {
-  img: (props: any) => <Image {...props} loading="lazy" />,
+  // eslint-disable-next-line jsx-a11y/alt-text, @typescript-eslint/no-explicit-any
+  img: (props: any) => <Image {...props} />,
 }
 
 export default function PostPage({
