@@ -158,34 +158,29 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const mdblocks = await n2m.pageToMarkdown(item.id)
   let mdString = n2m.toMarkdownString(mdblocks)
 
-  if (env.NODE_ENV === 'production') {
-    const getImagesFromBlock = (block: MdBlock): string[] => {
-      const imageUrls: string[] = []
-      if (block.type === 'image') {
-        imageUrls.push(block.parent.slice(4, -1))
-      }
-      if (block.children)
-        imageUrls.push(
-          ...block.children.map((child) => getImagesFromBlock(child)).flat()
-        )
-
-      return imageUrls
+  const getImagesFromBlock = (block: MdBlock): string[] => {
+    const imageUrls: string[] = []
+    if (block.type === 'image') {
+      imageUrls.push(block.parent.slice(block.parent.indexOf('(') + 1, -1))
     }
+    if (block.children)
+      imageUrls.push(
+        ...block.children.map((child) => getImagesFromBlock(child)).flat()
+      )
 
-    const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
-
-    const newImageUrls = await fetchImages(imageUrls)
-
-    newImageUrls.forEach(
-      ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
-    )
-
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(null)
-      }, 3000)
-    })
+    return imageUrls
   }
+
+  const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
+
+  const newImageUrls = await fetchImages(imageUrls)
+
+  newImageUrls.forEach(
+    ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
+  )
+
+  if (env.NODE_ENV === 'production')
+    await new Promise((resolve) => setTimeout(() => resolve(null), 3000))
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
@@ -227,31 +222,43 @@ async function fetchImages(imageUrls: string[]) {
   const urls: Array<{ oldUrl: string; newUrl: string }> = []
 
   for (const url of imageUrls) {
-    const res = await fetch(url)
-
-    if (!res.ok) throw Error('Fetch error')
-    const contentType = res.headers?.get('Content-Type')?.split('/')
+    const imageFileNameFromUrl = url.slice(97, url.indexOf('?'))
     if (
-      contentType == undefined ||
-      contentType[0] == undefined ||
-      contentType[1] == undefined
-    )
-      throw Error('Wront Content-Type')
-
-    const [fileType, fileExtention] = contentType
-    if (fileType !== 'image') throw Error('File is not an image')
-
-    const fileName = url.slice(97, url.indexOf(fileExtention) - 1)
-
-    res.body?.pipe(
-      createWriteStream(
-        join(process.cwd(), 'public', '_images', `${fileName}.${fileExtention}`)
+      !readdirSync(join(process.cwd(), 'public', '_images')).includes(
+        imageFileNameFromUrl
       )
-    )
+    ) {
+      const res = await fetch(url)
+
+      if (!res.ok) throw Error('Fetch error')
+      const contentType = res.headers?.get('Content-Type')?.split('/')
+      if (
+        contentType == undefined ||
+        contentType[0] == undefined ||
+        contentType[1] == undefined
+      )
+        throw Error('Wront Content-Type')
+
+      const [fileType, fileExtention] = contentType
+      if (fileType !== 'image') throw Error('File is not an image')
+
+      const fileName = url.slice(97, url.indexOf(fileExtention) - 1)
+
+      res.body?.pipe(
+        createWriteStream(
+          join(
+            process.cwd(),
+            'public',
+            '_images',
+            `${fileName}.${fileExtention}`
+          )
+        )
+      )
+    }
 
     urls.push({
       oldUrl: url,
-      newUrl: `/_images/${fileName}.${fileExtention}`,
+      newUrl: `/_images/${imageFileNameFromUrl}`,
     })
   }
 
