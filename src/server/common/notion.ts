@@ -183,6 +183,8 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
 
   console.log('\nprocess.cwd: ', process.cwd())
   console.log('current dir: ', readdirSync('.'))
+  console.log('public dir: ', readdirSync('./public'))
+  console.log('_images dir: ', readdirSync('./public/_images'))
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
