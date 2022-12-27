@@ -53,7 +53,7 @@ export default function Navbar() {
                 </Popover.Button>
               </div> */}
             </div>
-            <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
+            {/* <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
               {navigation.map((item) => (
                 <li
                   key={item.name}
@@ -84,7 +84,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
 
           <ThemeToggle />
