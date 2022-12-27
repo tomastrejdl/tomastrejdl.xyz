@@ -179,12 +179,13 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
     newImageUrls.forEach(
       ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
     )
-  }
 
-  console.log('\nprocess.cwd: ', process.cwd())
-  console.log('current dir: ', readdirSync('.'))
-  console.log('public dir: ', readdirSync('./public'))
-  console.log('_images dir: ', readdirSync('./public/_images'))
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(null)
+      }, 3000)
+    })
+  }
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
@@ -223,43 +224,36 @@ export const getChangelogImageSrc = async (blockId: string) => {
 async function fetchImages(imageUrls: string[]) {
   mkdirSync(join(process.cwd(), 'public', '_images'), { recursive: true })
 
-  const promises: Promise<{ oldUrl: string; newUrl: string }>[] = []
+  const urls: Array<{ oldUrl: string; newUrl: string }> = []
 
-  imageUrls.map((url) => {
-    promises.push(
-      fetch(url).then((res) => {
-        if (!res.ok) throw Error('Fetch error')
-        const contentType = res.headers?.get('Content-Type')?.split('/')
-        if (
-          contentType == undefined ||
-          contentType[0] == undefined ||
-          contentType[1] == undefined
-        )
-          throw Error('Wront Content-Type')
+  for (const url of imageUrls) {
+    const res = await fetch(url)
 
-        const [fileType, fileExtention] = contentType
-        if (fileType !== 'image') throw Error('File is not an image')
-
-        const fileName = url.slice(97, url.indexOf(fileExtention) - 1)
-
-        res.body?.pipe(
-          createWriteStream(
-            join(
-              process.cwd(),
-              'public',
-              '_images',
-              `${fileName}.${fileExtention}`
-            )
-          )
-        )
-
-        return {
-          oldUrl: url,
-          newUrl: `/_images/${fileName}.${fileExtention}`,
-        }
-      })
+    if (!res.ok) throw Error('Fetch error')
+    const contentType = res.headers?.get('Content-Type')?.split('/')
+    if (
+      contentType == undefined ||
+      contentType[0] == undefined ||
+      contentType[1] == undefined
     )
-  })
+      throw Error('Wront Content-Type')
 
-  return Promise.all(promises)
+    const [fileType, fileExtention] = contentType
+    if (fileType !== 'image') throw Error('File is not an image')
+
+    const fileName = url.slice(97, url.indexOf(fileExtention) - 1)
+
+    res.body?.pipe(
+      createWriteStream(
+        join(process.cwd(), 'public', '_images', `${fileName}.${fileExtention}`)
+      )
+    )
+
+    urls.push({
+      oldUrl: url,
+      newUrl: `/_images/${fileName}.${fileExtention}`,
+    })
+  }
+
+  return urls
 }
