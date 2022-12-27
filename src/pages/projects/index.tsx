@@ -12,12 +12,15 @@ export default function Index({
       <ul className="mx-auto max-w-sm">
         {items.map((item) => (
           <li key={item.slug} className="mt-2 px-4 py-2">
-            <Image
-              src={item.cover}
-              width={300}
-              height={200}
-              alt="Project cover"
-            />
+            {item.cover && (
+              <Image
+                src={item.cover}
+                width={300}
+                height={200}
+                alt="Project cover"
+                className="object-cover"
+              />
+            )}
             <Link href={`/projects/${item.slug}`} className="hover:underline">
               {item.title}
             </Link>

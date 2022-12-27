@@ -12,6 +12,7 @@ import { join } from 'path'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeSlug from 'rehype-slug'
+import rehypeImgSize from 'rehype-img-size'
 
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
@@ -69,12 +70,10 @@ export const getAllPublished = async (contentType: ContentType) => {
 
   const validatedItems = z.array(itemSchema).parse(allItems)
 
-  return validatedItems.map((item) => {
-    return getPageMetaData(item)
-  })
+  return Promise.all(validatedItems.map((item) => getPageMetaData(item)))
 }
 
-const getPageMetaData = (item: z.infer<typeof itemSchema>) => {
+const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
   const getTags = (tags: z.infer<typeof tagsSchema>) => {
     const allTags = tags.map((tag) => {
       return tag.name
@@ -83,10 +82,12 @@ const getPageMetaData = (item: z.infer<typeof itemSchema>) => {
     return allTags
   }
 
+  const newCoverUrl = (await fetchImages([item.cover.file.url])).at(0)?.newUrl
+
   return {
     id: item.id,
     title: item.properties.Name.title.at(0)?.plain_text,
-    cover: item.cover.file.url,
+    cover: newCoverUrl,
     tags: getTags(item.properties.Tags.multi_select),
     description: item.properties.Description.rich_text.at(0)?.plain_text,
     date: getToday(item.last_edited_time),
@@ -153,37 +154,42 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
 
   const validatedItem = itemSchema.parse(item)
 
-  const metadata = getPageMetaData(validatedItem)
+  const metadata = await getPageMetaData(validatedItem)
   const mdblocks = await n2m.pageToMarkdown(item.id)
   let mdString = n2m.toMarkdownString(mdblocks)
 
-  if (env.NODE_ENV === 'production') {
-    const getImagesFromBlock = (block: MdBlock): string[] => {
-      const imageUrls: string[] = []
-      if (block.type === 'image') {
-        imageUrls.push(block.parent.slice(4, -1))
-      }
-      if (block.children)
-        imageUrls.push(
-          ...block.children.map((child) => getImagesFromBlock(child)).flat()
-        )
-
-      return imageUrls
+  // if (env.NODE_ENV === 'production') {
+  const getImagesFromBlock = (block: MdBlock): string[] => {
+    const imageUrls: string[] = []
+    if (block.type === 'image') {
+      imageUrls.push(block.parent.slice(4, -1))
     }
+    if (block.children)
+      imageUrls.push(
+        ...block.children.map((child) => getImagesFromBlock(child)).flat()
+      )
 
-    const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
-
-    const newImageUrls = await fetchImages(imageUrls)
-
-    newImageUrls.forEach(
-      ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
-    )
+    return imageUrls
   }
+
+  const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
+
+  const newImageUrls = await fetchImages(imageUrls)
+
+  newImageUrls.forEach(
+    ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
+  )
+  // }
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeAutolinkHeadings, rehypeCodeTitles, rehypeSlug],
+      rehypePlugins: [
+        rehypeAutolinkHeadings,
+        rehypeCodeTitles,
+        rehypeSlug,
+        [rehypeImgSize, { dir: 'public' }],
+      ],
       development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
     },
   })
@@ -210,7 +216,7 @@ export const getChangelogImageSrc = async (blockId: string) => {
 }
 
 async function fetchImages(imageUrls: string[]) {
-  mkdirSync(join(process.cwd(), 'public', 'images'), { recursive: true })
+  mkdirSync(join(process.cwd(), 'public', '_images'), { recursive: true })
 
   const promises: Promise<{ oldUrl: string; newUrl: string }>[] = []
 
@@ -236,7 +242,7 @@ async function fetchImages(imageUrls: string[]) {
             join(
               process.cwd(),
               'public',
-              'images',
+              '_images',
               `${fileName}.${fileExtention}`
             )
           )
@@ -244,7 +250,7 @@ async function fetchImages(imageUrls: string[]) {
 
         return {
           oldUrl: url,
-          newUrl: `/images/${fileName}.${fileExtention}`,
+          newUrl: `/_images/${fileName}.${fileExtention}`,
         }
       })
     )

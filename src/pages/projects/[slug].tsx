@@ -3,8 +3,11 @@ import BlogLayout from '../../components/layout/BlogLayout'
 import Balancer from 'react-wrap-balancer'
 import type { InferGetStaticPropsType } from 'next'
 import { getAllPublished, getSingleItem } from '../../server/common/notion'
+import Image from 'next/image'
 
-const components = {}
+const components = {
+  img: (props: any) => <Image {...props} loading="lazy" />,
+}
 
 export default function PostPage({
   metadata,
