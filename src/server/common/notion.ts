@@ -155,30 +155,30 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
 
   const metadata = getPageMetaData(validatedItem)
   const mdblocks = await n2m.pageToMarkdown(item.id)
-  const mdString = n2m.toMarkdownString(mdblocks)
+  let mdString = n2m.toMarkdownString(mdblocks)
 
-  // if (env.NODE_ENV === 'production') {
-  // const getImagesFromBlock = (block: MdBlock): string[] => {
-  //   const imageUrls: string[] = []
-  //   if (block.type === 'image') {
-  //     imageUrls.push(block.parent.slice(4, -1))
-  //   }
-  //   if (block.children)
-  //     imageUrls.push(
-  //       ...block.children.map((child) => getImagesFromBlock(child)).flat()
-  //     )
+  if (env.NODE_ENV === 'production') {
+    const getImagesFromBlock = (block: MdBlock): string[] => {
+      const imageUrls: string[] = []
+      if (block.type === 'image') {
+        imageUrls.push(block.parent.slice(4, -1))
+      }
+      if (block.children)
+        imageUrls.push(
+          ...block.children.map((child) => getImagesFromBlock(child)).flat()
+        )
 
-  //   return imageUrls
-  // }
+      return imageUrls
+    }
 
-  // const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
+    const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
 
-  // const newImageUrls = await fetchImages(imageUrls)
+    const newImageUrls = await fetchImages(imageUrls)
 
-  // newImageUrls.forEach(
-  //   ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
-  // )
-  // }
+    newImageUrls.forEach(
+      ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
+    )
+  }
 
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
