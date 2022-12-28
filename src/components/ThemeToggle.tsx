@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
@@ -8,13 +9,16 @@ export default function ThemeToggle() {
 
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), [])
+  const [selected, setSelected] = useState<string | null>(null)
 
   return (
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-200 ring-gray-300  transition-all hover:ring-2  dark:bg-gray-600"
+      className="relative flex h-9 w-9 items-center justify-center rounded-lg"
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      onMouseEnter={() => setSelected('theme-toggle')}
+      onMouseLeave={() => setSelected(null)}
     >
       {mounted &&
         (resolvedTheme === 'light' ? (
@@ -22,6 +26,22 @@ export default function ThemeToggle() {
         ) : (
           <SunIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" />
         ))}
+      <AnimatePresence>
+        {selected === 'theme-toggle' && (
+          <motion.div
+            layoutId="navbar-hover-effect"
+            className="absolute inset-0 rounded-md bg-black/10 dark:bg-white/20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              type: 'spring',
+              stiffness: 500,
+              damping: 30,
+            }}
+          />
+        )}
+      </AnimatePresence>
     </button>
   )
 }
