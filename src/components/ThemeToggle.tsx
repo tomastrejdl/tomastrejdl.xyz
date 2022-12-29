@@ -15,7 +15,7 @@ export default function ThemeToggle() {
     <button
       aria-label="Toggle Dark Mode"
       type="button"
-      className="relative flex h-9 w-9 items-center justify-center rounded-lg"
+      className="fixed right-4 -mr-[10px] flex h-10 w-10 items-center justify-center rounded-md bg-neutral-200/50 backdrop-blur-sm dark:bg-neutral-800/50 sm:right-6 lg:right-8"
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       onMouseEnter={() => setSelected('theme-toggle')}
       onMouseLeave={() => setSelected(null)}

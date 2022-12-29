@@ -15,45 +15,43 @@ export default function Navbar() {
 
   return (
     <Popover>
-      <header className="absolute top-0 left-0 right-0 h-[10vh] w-full px-4 sm:px-6 md:h-20 lg:h-16 lg:px-8">
+      <header className="w-full">
         <nav
           className="relative flex h-full items-center justify-between"
           aria-label="Global"
         >
           <div className="flex flex-shrink-0 flex-grow items-center md:flex-grow-0">
-            <div className="flex w-full items-center justify-between md:w-auto">
-              <Link
-                href="/"
-                className="relative flex items-start gap-2 px-3 py-2 font-semibold"
-                onMouseEnter={() => setSelected('name')}
-                onMouseLeave={() => setSelected(null)}
-              >
-                <span className="relative  z-10">Tomáš Trejdl</span>
-                <AnimatePresence>
-                  {selected === 'name' && (
-                    <motion.div
-                      layoutId="navbar-hover-effect"
-                      className="absolute inset-0 rounded-md bg-black/10 dark:bg-white/20"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </AnimatePresence>
-              </Link>
-              {/* <div className="-mr-2 flex items-center md:hidden">
+            <Link
+              href="/"
+              className="relative -ml-3 flex items-start gap-2 px-3 py-2 font-semibold"
+              onMouseEnter={() => setSelected('name')}
+              onMouseLeave={() => setSelected(null)}
+            >
+              <span className="relative z-10">Tomáš Trejdl</span>
+              <AnimatePresence>
+                {selected === 'name' && (
+                  <motion.div
+                    layoutId="navbar-hover-effect"
+                    className="absolute inset-0 rounded-md bg-black/10 dark:bg-white/20"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 500,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+            </Link>
+            {/* <div className="-mr-2 flex items-center md:hidden">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md bg-neutral-800 p-2 text-neutral-200 hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
                   <span className="sr-only">Open main menu</span>
                   <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div> */}
-            </div>
-            {/* <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
+            <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
               {navigation.map((item) => (
                 <li
                   key={item.name}
@@ -62,7 +60,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className="relative block px-3 py-2 text-base font-medium text-neutral-300"
+                    className="relative block px-3 py-2 text-base font-medium text-neutral-700 dark:text-neutral-300"
                   >
                     <span className="relative z-10">{item.name}</span>
                     <AnimatePresence>
@@ -84,7 +82,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
-            </ul> */}
+            </ul>
           </div>
 
           <ThemeToggle />

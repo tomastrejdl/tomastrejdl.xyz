@@ -27,7 +27,7 @@
 - [x] lighthouse pwa
 - [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 - [ ] Turbopack
-- [ ] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
+- [x] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
 - [ ] use Pantone Color of the Year as primary color
 - [ ] add [next-translate](https://github.com/aralroca/next-translate)
 

@@ -29,7 +29,7 @@ const links: { name: string; href: string; icon: JSX.Element }[] = [
   },
 ]
 
-const SocialLogos = (): JSX.Element => {
+const SocialLogos = () => {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (

@@ -10,8 +10,6 @@ import { ErrorBoundary } from '@highlight-run/react'
 import { trpc } from '../utils/trpc'
 
 import '../styles/globals.css'
-import Navbar from '../components/Navbar'
-// import Footer from '../components/Footer'
 import Head from 'next/head'
 
 H.init('ve6j9wgp')
@@ -117,15 +115,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <ErrorBoundary showDialog>
           <ThemeProvider attribute="class">
             <div
-              className={`flex min-h-screen flex-col overflow-hidden selection:bg-amber-500 ${interVariable.className}`}
+              className={`relative mx-auto flex min-h-screen w-full max-w-7xl flex-col overflow-hidden p-4 selection:bg-amber-500 selection:text-black dark:selection:bg-amber-400 sm:p-6 lg:p-8 ${interVariable.className}`}
             >
-              <div className="relative mx-auto flex h-full w-full max-w-7xl grow flex-col py-[10vh]">
-                <Navbar />
-                <main className="mx-auto mt-10 flex h-full w-full grow flex-col sm:mt-8 sm:px-6 lg:mt-16">
-                  <Component {...pageProps} />
-                </main>
-                {/* <Footer /> */}
-              </div>
+              <Component {...pageProps} />
             </div>
           </ThemeProvider>
         </ErrorBoundary>

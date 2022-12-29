@@ -1,46 +1,42 @@
 import type { InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import BlogLayout from '../../components/layout/BlogLayout'
+import BaseLayout from '../../layouts/BaseLayout'
 import { getAllPublished } from '../../server/common/notion'
 
 export default function Index({
   items,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <BlogLayout>
-      <ul className="mx-auto max-w-sm">
+    <BaseLayout>
+      <ul className="mx-auto max-w-4xl">
         {items.map((item, index) => (
-          <li key={item.slug} className="mt-2 px-4 py-2">
+          <li
+            key={item.slug}
+            className="group mt-12 grid grid-flow-dense grid-cols-3 gap-4 first:mt-0"
+          >
             {item.cover && (
               <Image
                 src={item.cover}
-                width={300}
-                height={200}
+                width={572}
+                height={373}
                 alt="Project cover"
-                className="object-cover"
+                className="col-span-2 w-full object-cover group-odd:col-start-2"
                 priority={index < 5}
               />
             )}
-            <Link href={`/projects/${item.slug}`} className="hover:underline">
-              {item.title}
-            </Link>
-            <div className="mt-1 text-xs font-medium">{item.date}</div>
-            <div className="flex flex-wrap gap-2 text-sm">
-              {item.tags.map((tag) => (
-                <Link
-                  href={`/projects/tags/${tag}`}
-                  key={tag}
-                  className="text-blue-500 hover:underline"
-                >
-                  {tag}
-                </Link>
-              ))}
+            <div className="flex flex-col justify-center gap-4 group-odd:text-right">
+              <Link href={`/projects/${item.slug}`} className="hover:underline">
+                <h2 className="text-4xl font-semibold">{item.title}</h2>
+              </Link>
+              <Link href={`/projects/${item.slug}`} className="hover:underline">
+                Read more {'->'}
+              </Link>
             </div>
           </li>
         ))}
       </ul>
-    </BlogLayout>
+    </BaseLayout>
   )
 }
 

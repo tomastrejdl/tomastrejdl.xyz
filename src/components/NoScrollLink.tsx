@@ -1,11 +1,11 @@
 import Link, { type LinkProps } from 'next/link'
 import React, { type ReactNode } from 'react'
 
-interface IProps extends LinkProps {
+interface NoScrollLinkProps extends LinkProps {
   children: ReactNode
 }
 
-const NoScrollLink = ({ children, href, passHref }: IProps): JSX.Element => (
+const NoScrollLink = ({ children, href, passHref }: NoScrollLinkProps) => (
   <Link href={href} passHref={passHref} scroll={false}>
     {children}
   </Link>

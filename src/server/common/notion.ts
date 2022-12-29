@@ -41,7 +41,7 @@ const itemSchema = z.object({
 
 export const getAllPublished = async (contentType: ContentType) => {
   const items = await notion.databases.query({
-    database_id: env.DATABASE_ID,
+    database_id: env.NOTION_DATABASE_ID,
     filter: {
       and: [
         {
@@ -127,7 +127,7 @@ function getToday(dateString: string) {
 
 export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const response = await notion.databases.query({
-    database_id: env.DATABASE_ID,
+    database_id: env.NOTION_DATABASE_ID,
     filter: {
       and: [
         {
@@ -150,7 +150,7 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
 
   const item = response.results[0]
   if (!item)
-    throw Error(`Item ${slug} not found in database ${env.DATABASE_ID}`)
+    throw Error(`Item ${slug} not found in database ${env.NOTION_DATABASE_ID}`)
 
   const validatedItem = itemSchema.parse(item)
 
@@ -161,7 +161,12 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const getImagesFromBlock = (block: MdBlock): string[] => {
     const imageUrls: string[] = []
     if (block.type === 'image') {
-      imageUrls.push(block.parent.slice(block.parent.indexOf('(') + 1, -1))
+      imageUrls.push(
+        ...block.parent
+          .split('\n')
+          .map((p) => p.slice(block.parent.indexOf('(') + 1, -1))
+          .filter((url) => url.length > 5)
+      )
     }
     if (block.children)
       imageUrls.push(
