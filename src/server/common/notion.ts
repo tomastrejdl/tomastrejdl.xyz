@@ -194,9 +194,6 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
     ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
   )
 
-  if (env.NODE_ENV === 'production')
-    await new Promise((resolve) => setTimeout(() => resolve(null), 3000))
-
   const mdxSource = await serialize(mdString, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
@@ -269,7 +266,9 @@ async function fetchImages(imageUrls: string[]) {
       const [fileType] = contentType
       if (fileType !== 'image') throw Error('File is not an image')
 
-      res.body?.pipe(createWriteStream(filePath))
+      await new Promise((resolve) => {
+        res.body?.pipe(createWriteStream(filePath)).on('close', resolve)
+      })
     }
     const { width, height } = sizeOf(filePath)
 
