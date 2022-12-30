@@ -11,7 +11,7 @@ export default function Footer() {
         <Button
           onClick={scrollToTop}
           tooltip="Scroll to top"
-          className="-mr-[10px] h-10 w-10"
+          className="h-10 w-10"
           aria-label="Scroll to top"
         >
           <ArrowUpIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" />
