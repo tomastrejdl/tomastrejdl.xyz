@@ -13,6 +13,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeSlug from 'rehype-slug'
 import rehypeImgSize from 'rehype-img-size'
+import sizeOf from 'image-size'
 
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
@@ -82,15 +83,24 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
     return allTags
   }
 
-  const newCoverUrl = (await fetchImages([item.cover.file.url])).at(0)?.newUrl
+  const coverImage = (await fetchImages([item.cover.file.url])).at(0)
+
+  if (!coverImage) throw Error('No cover image found for item: ' + item.id)
 
   return {
     id: item.id,
     title: item.properties.Name.title.at(0)?.plain_text,
-    cover: newCoverUrl,
+    cover: {
+      url: coverImage.newUrl,
+      width: coverImage.width,
+      height: coverImage.height,
+      alt:
+        item.properties.Name.title.at(0)?.plain_text + ' article cover image',
+    },
     tags: getTags(item.properties.Tags.multi_select),
     description: item.properties.Description.rich_text.at(0)?.plain_text,
-    date: getToday(item.last_edited_time),
+    created_time: getToday(item.created_time),
+    last_edited_time: getToday(item.last_edited_time),
     slug: item.properties.Slug.rich_text.at(0)?.plain_text,
   }
 }
@@ -224,10 +234,22 @@ export const getChangelogImageSrc = async (blockId: string) => {
 async function fetchImages(imageUrls: string[]) {
   mkdirSync(join(process.cwd(), 'public', '_images'), { recursive: true })
 
-  const urls: Array<{ oldUrl: string; newUrl: string }> = []
+  const urls: Array<{
+    oldUrl: string
+    newUrl: string
+    width: number
+    height: number
+  }> = []
 
   for (const url of imageUrls) {
     const imageFileNameFromUrl = url.slice(97, url.indexOf('?'))
+    const filePath = join(
+      process.cwd(),
+      'public',
+      '_images',
+      imageFileNameFromUrl
+    )
+
     if (
       !readdirSync(join(process.cwd(), 'public', '_images')).includes(
         imageFileNameFromUrl
@@ -244,26 +266,21 @@ async function fetchImages(imageUrls: string[]) {
       )
         throw Error('Wront Content-Type')
 
-      const [fileType, fileExtention] = contentType
+      const [fileType] = contentType
       if (fileType !== 'image') throw Error('File is not an image')
 
-      const fileName = url.slice(97, url.indexOf(fileExtention) - 1)
-
-      res.body?.pipe(
-        createWriteStream(
-          join(
-            process.cwd(),
-            'public',
-            '_images',
-            `${fileName}.${fileExtention}`
-          )
-        )
-      )
+      res.body?.pipe(createWriteStream(filePath))
     }
+    const { width, height } = sizeOf(filePath)
+
+    if (!width || !height)
+      throw Error('Error: Could not get size of image' + imageFileNameFromUrl)
 
     urls.push({
       oldUrl: url,
       newUrl: `/_images/${imageFileNameFromUrl}`,
+      width,
+      height,
     })
   }
 

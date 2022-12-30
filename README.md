@@ -3,19 +3,19 @@
 ## TODO
 
 - [x] partytown
-- [ ] cms (Sanity?, Contentful?, Prismic?, Storyblok?)
-- [ ] mdx
+- [x] cms - Notion (~~ Sanity?, Contentful?, Prismic?, Storyblok?~~ )
+- [x] mdx
 - [ ] Next 13 app directory
 - [ ] stack page
 - [ ] about page with photo
 - [ ] blog page with article search as on leerob.io/blog
-- [ ] blog article page
+- [x] blog article page
 - [ ] newsletter
 - [ ] projects page
-- [ ] project detail page
+- [x] project detail page
 - [ ] page transition animations
 - [ ] scrolling animations / element entering page animations
-- [ ] animated dark mode switching
+- [x] animated dark mode switching
 - [ ] caching
 - [ ] SEO
 - [ ] sitemap
@@ -30,6 +30,7 @@
 - [x] ~~ preact ~~ (not currently possible due to incompatibility with framer-motion)
 - [ ] use Pantone Color of the Year as primary color
 - [ ] add [next-translate](https://github.com/aralroca/next-translate)
+- [ ] OG images with next-og-image
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.

@@ -5,6 +5,7 @@ import { getAllPublished, getSingleItem } from '../../server/common/notion'
 import Image from 'next/image'
 import Link from 'next/link'
 import BaseLayout from '../../layouts/BaseLayout'
+import { NextSeo } from 'next-seo'
 
 const components = {
   // eslint-disable-next-line jsx-a11y/alt-text, @typescript-eslint/no-explicit-any
@@ -17,6 +18,21 @@ export default function PostPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BaseLayout>
+      <NextSeo
+        openGraph={{
+          title: metadata.title + ' - Tomáš Trejdl',
+          description: metadata.description,
+          url: `https://www.tomastrejdl.xyz/projects/${metadata.slug}`,
+          type: 'article',
+          article: {
+            publishedTime: metadata.created_time,
+            modifiedTime: metadata.last_edited_time,
+            authors: ['https://www.tomastrejdl.xyz'],
+            tags: metadata.tags,
+          },
+          images: [metadata.cover],
+        }}
+      />
       <article className="prose prose-neutral mx-auto dark:prose-invert lg:prose-lg">
         <header>
           <h1>
