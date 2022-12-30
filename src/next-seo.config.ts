@@ -1,6 +1,6 @@
 import { type DefaultSeoProps } from 'next-seo'
 
-const nextSeoConfig: DefaultSeoProps = {
+const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
   title: 'Tomáš Trejdl - UX Designer and full-stack developer',
   description: 'UX Designer and full-stack developer',
   openGraph: {
@@ -10,6 +10,13 @@ const nextSeoConfig: DefaultSeoProps = {
     siteName: 'Tomáš Trejdl',
     title: 'Tomáš Trejdl',
     description: 'UX Designer and full-stack developer',
+    images: [
+      {
+        url: `${hostname}/api/og-image/default-og-image`,
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   twitter: {
     handle: '@tomastrejdl',
@@ -107,6 +114,6 @@ const nextSeoConfig: DefaultSeoProps = {
       href: '/icons/favicon-16x16.png',
     },
   ],
-}
+})
 
-export default nextSeoConfig
+export default useNextSeoConfig

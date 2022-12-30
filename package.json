@@ -26,6 +26,7 @@
     "@trpc/react-query": "10.7.0",
     "@trpc/server": "10.7.0",
     "@vercel/analytics": "^0.1.6",
+    "@vercel/og": "^0.0.21",
     "framer-motion": "^8.0.2",
     "highlight.run": "^5.1.8",
     "image-size": "^1.0.2",

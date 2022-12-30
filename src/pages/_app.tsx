@@ -11,9 +11,10 @@ import { trpc } from '../utils/trpc'
 
 import '../styles/globals.css'
 
-import SEO from '../next-seo.config'
+import useNextSeoConfig from '../next-seo.config'
 import { DefaultSeo } from 'next-seo'
 import Head from 'next/head'
+import { env } from '../env/client.mjs'
 
 H.init('ve6j9wgp')
 
@@ -23,9 +24,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const nextSeo = useNextSeoConfig(env.NEXT_PUBLIC_HOSTNAME)
+
   return (
     <>
-      <DefaultSeo {...SEO} />
+      <DefaultSeo {...nextSeo} />
       <Head>
         <meta
           name="theme-color"
