@@ -12,7 +12,7 @@ const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
     description: 'UX Designer and full-stack developer',
     images: [
       {
-        url: `${hostname}/api/og-image/default-og-image`,
+        url: `${hostname}/api/og/tomastrejdl-og.png`,
         width: 1200,
         height: 630,
       },
