@@ -1,9 +1,9 @@
-import { signIn, useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import EmptyLayout from '../layouts/EmptyLayout'
 
 export default function DeployPage() {
-  const { status } = useSession()
+  const { data: session, status } = useSession()
 
   return (
     <EmptyLayout className="items-center justify-center">
@@ -29,12 +29,26 @@ export default function DeployPage() {
         </div>
       )}
       {status === 'authenticated' && (
-        <Link
-          className="rounded-md bg-neutral-300 px-4 py-2 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800"
-          href="https://api.vercel.com/v1/integrations/deploy/prj_JsseR5RAHkpAmlPiWs2pnRyQAAgN/kLXbr6tEpC"
-        >
-          Redeploy
-        </Link>
+        <>
+          {session.user?.role == 'ADMIN' ? (
+            <Link
+              className="rounded-md bg-neutral-300 px-4 py-2 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800"
+              href="https://api.vercel.com/v1/integrations/deploy/prj_JsseR5RAHkpAmlPiWs2pnRyQAAgN/kLXbr6tEpC"
+            >
+              Redeploy
+            </Link>
+          ) : (
+            <>
+              You are not authorized to deploy
+              <button
+                className="rounded-md bg-neutral-300 px-4 py-2 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800"
+                onClick={() => signOut()}
+              >
+                Sign out
+              </button>
+            </>
+          )}
+        </>
       )}
       {status === 'unauthenticated' && (
         <button

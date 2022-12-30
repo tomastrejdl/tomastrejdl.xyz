@@ -9,9 +9,18 @@ import { env } from '../../../env/server.mjs'
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
+    async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id
+
+        const userFromDb = await prisma.user.findUnique({
+          where: { id: user.id },
+        })
+
+        if (!userFromDb)
+          throw Error(`Error: User with ID: ${user.id} not found`)
+
+        session.user.role = userFromDb.role
       }
       return session
     },
