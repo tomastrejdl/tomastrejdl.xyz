@@ -1,12 +1,13 @@
 import { Float } from '@headlessui-float/react'
 import { Popover } from '@headlessui/react'
-import { useState, type ReactNode } from 'react'
+import { type KeyboardEvent, useState, type ReactNode } from 'react'
 
 export default function Tooltip({
   children,
   className,
   onClick,
   tooltipContent,
+  ...props
 }: React.PropsWithChildren<{
   className: string
   tooltipContent: string | ReactNode
@@ -18,6 +19,8 @@ export default function Tooltip({
       as="div"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      onFocus={() => setIsOpen(true)}
+      onBlur={() => setIsOpen(false)}
     >
       <Float
         show={isOpen}
@@ -35,9 +38,13 @@ export default function Tooltip({
       >
         <Popover.Button
           onClick={onClick}
-          className={`flex items-center justify-center rounded-md  focus:outline-none  ${className} ${
+          onKeyDown={(e: KeyboardEvent) => {
+            e.key === 'Enter' && onClick()
+          }}
+          className={`flex items-center justify-center rounded-md focus-within:ring-1 focus:outline-none  ${className} ${
             isOpen && 'bg-neutral-100 dark:bg-neutral-800'
           }`}
+          {...props}
         >
           {children}
         </Popover.Button>

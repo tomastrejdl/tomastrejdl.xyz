@@ -16,6 +16,8 @@ export default function PostPage({
   metadata,
   mdxSource,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const projectName = metadata.slug?.replaceAll('-', ' ')
+
   return (
     <BaseLayout>
       <NextSeo
@@ -33,8 +35,11 @@ export default function PostPage({
           images: [metadata.cover],
         }}
       />
-      <article className="prose prose-neutral mx-auto dark:prose-invert lg:prose-lg">
+      <article className="prose prose-neutral mx-auto prose-figcaption:text-center prose-img:rounded-md dark:prose-invert lg:prose-lg">
         <header>
+          <div className="mb-4 text-sm font-medium uppercase">
+            {projectName}
+          </div>
           <h1>
             <Balancer>{metadata.title}</Balancer>
           </h1>
@@ -43,7 +48,7 @@ export default function PostPage({
               <Link
                 href={`/projects/tags/${tag}`}
                 key={tag}
-                className="text-blue-500 hover:underline"
+                className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-600"
               >
                 {tag}
               </Link>

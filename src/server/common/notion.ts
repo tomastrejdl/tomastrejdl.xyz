@@ -14,6 +14,7 @@ import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeSlug from 'rehype-slug'
 import rehypeImgSize from 'rehype-img-size'
 import sizeOf from 'image-size'
+import rehypeFigure from 'rehype-figure'
 
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
@@ -202,6 +203,7 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
         rehypeCodeTitles,
         rehypeSlug,
         [rehypeImgSize, { dir: 'public' }],
+        rehypeFigure,
       ],
       development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
     },

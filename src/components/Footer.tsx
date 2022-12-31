@@ -14,15 +14,16 @@ export default function Footer() {
           className="h-10 w-10"
           aria-label="Scroll to top"
         >
-          <ArrowUpIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" />
+          <span className="sr-only">Scroll to top</span>
+          <ArrowUpIcon className="h-5 w-5 text-neutral-800 dark:text-neutral-200" />
         </Button>
       </div>
 
-      <div className="mx-auto w-full text-center text-xs text-neutral-600">
+      <div className="mx-auto w-full text-center text-xs text-neutral-500 dark:text-neutral-500">
         <span>© 2023 Tomáš Trejdl | </span>
         <span>Designed and built in Prague | </span>
         <Link
-          className="whitespace-nowrap underline hover:text-neutral-500"
+          className="whitespace-nowrap underline hover:text-neutral-900 dark:hover:text-neutral-400"
           href="https://github.com/tomastrejdl/tomastrejdl.xyz"
           target={'_blank'}
         >

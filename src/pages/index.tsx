@@ -25,12 +25,12 @@ const HeroSection = () => {
     <HomepageLayout>
       <div className="flex grow flex-col items-center justify-center">
         <h1 className="text-center">
-          <span className="block text-lg lg:text-xl">Hi, my name is Tomáš</span>
-          <span className="mt-8 inline-block text-3xl font-medium sm:text-4xl md:text-5xl lg:text-7xl lg:leading-snug">
+          <p className="block text-lg lg:text-xl">Hi, my name is Tomáš</p>
+          <p className="mt-8 inline-block text-3xl font-medium sm:text-4xl md:text-5xl lg:text-7xl lg:leading-snug">
             I&apos;m a <MagicText>UX designer</MagicText> and
             <br />
             <MagicText>full-stack developer</MagicText>
-          </span>
+          </p>
         </h1>
         <p className="relative mt-4 text-center text-lg">
           Currently working on{' '}
