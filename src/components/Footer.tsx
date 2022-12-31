@@ -19,7 +19,7 @@ export default function Footer() {
         </Button>
       </div>
 
-      <div className="mx-auto w-full text-center text-xs text-neutral-500 dark:text-neutral-500">
+      <div className="mx-auto w-full text-center text-xs text-neutral-600 dark:text-neutral-400">
         <span>© 2023 Tomáš Trejdl | </span>
         <span>Designed and built in Prague | </span>
         <Link

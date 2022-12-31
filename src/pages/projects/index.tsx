@@ -17,6 +17,7 @@ export default function Index({
           content={`My projects: ${items.map((item) => item.title).join(', ')}`}
         />
       </Head>
+      <h1 className="sr-only">Projects</h1>
       <ul className="mx-auto max-w-4xl">
         {items.map((item, index) => (
           <li key={item.slug} className="group">
