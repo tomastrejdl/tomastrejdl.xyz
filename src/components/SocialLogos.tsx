@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import { useState } from 'react'
 import { DribbbleLogo } from './icons/DribbbleLogo'
 import { GitHubLogo } from './icons/GitHubLogo'
 import { InstagramLogo } from './icons/InstagramLogo'
 import { LinkedInLogo } from './icons/LinkedInLogo'
-import Link from './NoScrollLink'
 
 const links: { name: string; href: string; icon: JSX.Element }[] = [
   {
@@ -40,7 +40,7 @@ const SocialLogos = () => {
           onMouseLeave={() => setSelected(null)}
           key={name}
         >
-          <Link key={name} href={href}>
+          <Link target={'_blank'} key={name} href={href}>
             <div className="p-4">
               <div className="relative z-10">{icon}</div>
               <AnimatePresence>
