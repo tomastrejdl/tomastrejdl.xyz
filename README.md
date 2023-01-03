@@ -5,13 +5,13 @@
 - [x] partytown
 - [x] cms - Notion (~~ Sanity?, Contentful?, Prismic?, Storyblok?~~ )
 - [x] mdx
-- [ ] Next 13 app directory
+- [ ] ~~Next 13 app directory~~
 - [ ] stack page
-- [ ] about page with photo
+- [x] about page with photo
 - [ ] blog page with article search as on leerob.io/blog
 - [x] blog article page
 - [ ] newsletter
-- [ ] projects page
+- [x] projects page
 - [x] project detail page
 - [ ] page transition animations
 - [ ] scrolling animations / element entering page animations
@@ -23,7 +23,7 @@
 - [ ] 404 page
 - [ ] style all base elements
 - [ ] no css, everything is in tailwind config
-- [ ] arrow for external links as on brianlovin.com
+- [x] arrow for external links as on brianlovin.com
 - [x] lighthouse pwa
 - [ ] CSP - XSS protection https://developer.chrome.com/docs/lighthouse/best-practices/csp-xss
 - [ ] Turbopack
@@ -31,6 +31,7 @@
 - [ ] use Pantone Color of the Year as primary color
 - [ ] add [next-translate](https://github.com/aralroca/next-translate)
 - [ ] OG images with next-og-image
+- [ ] cmdk https://github.com/pacocoursey/cmdk
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.

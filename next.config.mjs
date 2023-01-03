@@ -1,3 +1,4 @@
+import redirects from './redirects.mjs'
 import NextPWA from 'next-pwa'
 const withPWA = NextPWA({
   dest: 'public',
@@ -48,6 +49,7 @@ const config = {
       },
     ]
   },
+  redirects,
 }
 export default withBundleAnalyzer(withPWA(config))
 
