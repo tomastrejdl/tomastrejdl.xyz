@@ -54,7 +54,7 @@ export default withBundleAnalyzer(withPWA(config))
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' 'https://static.highlight.io';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.highlight.io;
     child-src;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
