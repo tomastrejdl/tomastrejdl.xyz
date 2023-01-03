@@ -23,8 +23,12 @@ const notion = new Client({ auth: env.NOTION_TOKEN })
 const n2m = new NotionToMarkdown({ notionClient: notion })
 
 const tagsSchema = z.object({ name: z.string() }).array().min(1)
-
 const richTextSchema = z.object({ plain_text: z.string() }).array().min(1)
+const dateSchema = z.object({
+  start: z.string(),
+  end: z.string().nullish(),
+  time_zone: z.string().nullish(),
+})
 
 const itemSchema = z.object({
   id: z.string(),
@@ -38,6 +42,7 @@ const itemSchema = z.object({
     Description: z.object({ rich_text: richTextSchema }),
     Type: z.object({ select: z.object({ name: z.enum(CONTENT_TYPES) }) }),
     Tags: z.object({ multi_select: tagsSchema }),
+    'Project duration': z.object({ date: dateSchema }),
   }),
 })
 
@@ -63,7 +68,7 @@ export const getAllPublished = async (contentType: ContentType) => {
     sorts: [
       {
         property: 'Created time',
-        direction: 'descending',
+        direction: 'ascending',
       },
     ],
   })
@@ -103,6 +108,12 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
     created_time: getToday(item.created_time),
     last_edited_time: getToday(item.last_edited_time),
     slug: item.properties.Slug.rich_text.at(0)?.plain_text,
+    projectName: item.properties.Slug.rich_text
+      .at(0)
+      ?.plain_text.split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' '),
+    projectDuration: item.properties['Project duration'].date,
   }
 }
 

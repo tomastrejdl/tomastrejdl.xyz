@@ -27,6 +27,7 @@
     "@trpc/server": "10.7.0",
     "@vercel/analytics": "^0.1.6",
     "@vercel/og": "^0.0.21",
+    "date-fns": "^2.29.3",
     "framer-motion": "^8.0.2",
     "highlight.run": "^5.1.8",
     "image-size": "^1.0.2",
@@ -54,7 +55,6 @@
   "devDependencies": {
     "@builder.io/partytown": "^0.7.3",
     "@next/bundle-analyzer": "^13.1.1",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",

@@ -10,10 +10,13 @@
 
 @layer base {
   body {
-    @apply bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 transition-colors duration-300;
+    @apply bg-neutral-50 text-neutral-900 transition-colors duration-300 dark:bg-neutral-900 dark:text-neutral-100;
   }
-  p a {
-    @apply hover:magic-text inline-block font-medium text-blue-600 dark:text-blue-500 underline transition  hover:scale-105;
+  /* p a {
+    @apply hover:magic-text inline-block font-medium text-blue-600 underline transition will-change-transform dark:text-blue-500;
+  } */
+  img {
+    @apply dark:opacity-80 transition-opacity duration-300;
   }
 }
 

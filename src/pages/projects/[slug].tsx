@@ -3,9 +3,10 @@ import Balancer from 'react-wrap-balancer'
 import type { InferGetStaticPropsType } from 'next'
 import { getAllPublished, getSingleItem } from '../../server/common/notion'
 import Image from 'next/image'
-import Link from 'next/link'
 import BaseLayout from '../../layouts/BaseLayout'
 import { NextSeo } from 'next-seo'
+import { InternalLink } from '../../components/Links'
+import { format } from 'date-fns'
 
 const components = {
   // eslint-disable-next-line jsx-a11y/alt-text, @typescript-eslint/no-explicit-any
@@ -16,8 +17,6 @@ export default function PostPage({
   metadata,
   mdxSource,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const projectName = metadata.slug?.replaceAll('-', ' ')
-
   return (
     <BaseLayout>
       <NextSeo
@@ -35,27 +34,47 @@ export default function PostPage({
           images: [metadata.cover],
         }}
       />
-      <article className="prose prose-neutral mx-auto prose-figcaption:text-center prose-img:rounded-md dark:prose-invert lg:prose-lg">
+      <article className="prose prose-neutral mx-auto prose-figcaption:text-center  prose-img:rounded-md dark:prose-invert lg:prose-lg">
         <header>
           <div className="mb-4 text-sm font-medium uppercase">
-            {projectName}
+            {metadata.projectName}
           </div>
           <h1>
             <Balancer>{metadata.title}</Balancer>
           </h1>
-          <div className="flex flex-wrap gap-2 text-sm">
-            {metadata.tags.map((tag) => (
-              <Link
-                href={`/projects/tags/${tag}`}
-                key={tag}
-                className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-600"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
         </header>
         <MDXRemote {...mdxSource} components={components} />
+        <section className="not-prose flex flex-col gap-4 rounded-md bg-neutral-200 p-8 dark:bg-neutral-800">
+          <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
+            Project info
+          </h2>
+          <div className="text-base">
+            Duration:{' '}
+            <span className="whitespace-nowrap">
+              {format(new Date(metadata.projectDuration.start), 'MMM yyyy')}
+              {metadata.projectDuration.end &&
+                metadata.projectDuration.end.split('-')[1] !==
+                  metadata.projectDuration.start.split('-')[1] && (
+                  <>
+                    {' - '}
+                    {format(new Date(metadata.projectDuration.end), 'MMM yyyy')}
+                  </>
+                )}
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="mr-2 text-base">Tags:</span>
+            {metadata.tags.map((tag) => (
+              <InternalLink
+                href={{ pathname: '/projects', query: { tags: tag } }}
+                key={tag}
+                className="-ml-2 rounded-md px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:text-neutral-200 dark:hover:bg-neutral-600"
+              >
+                {tag}
+              </InternalLink>
+            ))}
+          </div>
+        </section>
       </article>
     </BaseLayout>
   )

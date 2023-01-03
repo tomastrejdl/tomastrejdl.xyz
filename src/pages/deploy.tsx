@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
-import Head from 'next/head'
 import Link from 'next/link'
 import EmptyLayout from '../layouts/EmptyLayout'
 
@@ -8,9 +7,6 @@ export default function DeployPage() {
 
   return (
     <EmptyLayout className="items-center justify-center">
-      <Head>
-        <title>Deploy - Tomáš Trejdl</title>
-      </Head>
       {status === 'loading' && (
         <div role="status">
           <svg
