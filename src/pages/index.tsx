@@ -13,12 +13,12 @@ export default function HomePage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BaseLayout>
-      <div className="my-16 flex items-center gap-8">
+      <div className="my-16 flex flex-wrap items-center gap-8 md:my-4 xl:my-16">
         <Image
           src="/img/tomastrejdl-headshot-no-bg.png"
           alt="Tomáš Trejdl photo"
-          width={3024 / 4}
-          height={4032 / 4}
+          width={3024 / 30}
+          height={4032 / 30}
           className="my-0 aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border bg-neutral-100 object-contain dark:border-neutral-700 dark:bg-neutral-800 sm:h-28 sm:w-28"
           priority={true}
         />
@@ -29,13 +29,12 @@ export default function HomePage({
           </p>
         </div>
 
-        <SocialLogos className="ml-auto" />
+        <SocialLogos className="md:ml-auto" />
       </div>
-      <p>Lorem</p>
 
-      <section className="mt-32">
-        <header className="flex items-center justify-between">
-          <h2 className="my-2 text-lg font-medium text-neutral-600 dark:text-neutral-400">
+      <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+        <header className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-neutral-600 dark:text-neutral-400">
             My latest project
           </h2>
           <InternalLink

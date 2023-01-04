@@ -14,8 +14,8 @@ export default function AboutPage() {
           <Image
             src="/img/tomastrejdl-headshot-no-bg.png"
             alt="Tomáš Trejdl photo"
-            width={3024 / 4}
-            height={4032 / 4}
+            width={3024 / 30}
+            height={4032 / 30}
             className="my-0 aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border bg-neutral-100 object-contain dark:border-neutral-700 dark:bg-neutral-800 sm:h-28 sm:w-28"
             priority={true}
           />
