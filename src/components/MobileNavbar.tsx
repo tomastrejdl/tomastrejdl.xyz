@@ -12,7 +12,14 @@ export default function MobileNavbar({ className }: { className: string }) {
   )?.name
 
   return (
-    <nav className={className}>
+    <Transition
+      show={true}
+      as="nav"
+      appear
+      enter="duration-500 delay-1000 transition"
+      enterFrom="opacity-0 translate-y-40"
+      enterTo={`opacity-1 translate-y-0 ${className}`}
+    >
       <Popover className="relative flex h-full w-full flex-col">
         {({ open }) => (
           <>
@@ -52,7 +59,7 @@ export default function MobileNavbar({ className }: { className: string }) {
           </>
         )}
       </Popover>
-    </nav>
+    </Transition>
   )
 }
 

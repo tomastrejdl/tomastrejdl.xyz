@@ -21,7 +21,14 @@ export default function HomePage({
 }
 
 const HeroSection = () => (
-  <section className="flex min-h-[60dvh] grow flex-col items-center justify-center">
+  <Transition
+    show={true}
+    as="section"
+    appear
+    enter="duration-1000 transition-all"
+    enterFrom="opacity-0 min-h-[90dvh]"
+    enterTo="opacity-1 min-h-[60dvh] flex grow flex-col items-center justify-center"
+  >
     <h1 className="text-center">
       <p className="block text-lg lg:text-xl">Hi, my name is Tomáš</p>
       <p className="mt-8 inline-block text-3xl font-medium sm:text-4xl md:text-5xl lg:text-7xl lg:leading-snug">
@@ -42,7 +49,7 @@ const HeroSection = () => (
         </span>
       </CustomLink>
     </p>
-  </section>
+  </Transition>
 )
 
 // const HeroSection = () => (
@@ -101,7 +108,7 @@ const ProjectsSection = ({
   <Transition
     show={true}
     appear
-    enter="duration-500 delay-[1s] ease-out transition"
+    enter="duration-500 delay-500 ease-out transition"
     enterFrom="opacity-0 translate-y-64"
     enterTo="opacity-100 translate-y-0"
   >
