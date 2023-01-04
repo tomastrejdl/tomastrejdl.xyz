@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import EmptyLayout from '../layouts/EmptyLayout'
 
@@ -7,6 +8,7 @@ export default function DeployPage() {
 
   return (
     <EmptyLayout className="items-center justify-center">
+      <NextSeo title="Deploy - Tomáš Trejdl" nofollow noindex />
       {status === 'loading' && (
         <div role="status">
           <svg

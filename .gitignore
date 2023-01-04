@@ -47,3 +47,7 @@ yarn-error.log*
 
 # Images from Notion CMS
 /public/_images
+
+# Sitemaps
+/public/sitemap*.xml
+/public/robots.txt

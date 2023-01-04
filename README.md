@@ -32,6 +32,7 @@
 - [ ] add [next-translate](https://github.com/aralroca/next-translate)
 - [ ] OG images with next-og-image
 - [ ] cmdk https://github.com/pacocoursey/cmdk
+- [ ] use @container queries
 
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
