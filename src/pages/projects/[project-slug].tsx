@@ -44,7 +44,7 @@ export default function PostPage({
           </h1>
         </header>
         <MDXRemote {...mdxSource} components={components} />
-        <section className="not-prose flex flex-col gap-4 rounded-md bg-neutral-200 p-8 dark:bg-neutral-800">
+        <aside className="not-prose flex flex-col gap-4 rounded-md bg-neutral-200 p-8 dark:bg-neutral-800">
           <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
             Project info
           </h2>
@@ -74,16 +74,20 @@ export default function PostPage({
               </InternalLink>
             ))}
           </div>
-        </section>
+        </aside>
       </article>
     </BaseLayout>
   )
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
+export async function getStaticProps({
+  params,
+}: {
+  params: { 'project-slug': string }
+}) {
   return {
     props: {
-      ...(await getSingleItem('projects', params.slug)),
+      ...(await getSingleItem('projects', params['project-slug'])),
     },
     revalidate: 3000,
   }
@@ -91,7 +95,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
 export const getStaticPaths = async () => {
   const posts = await getAllPublished('projects')
-  const paths = posts.map(({ slug }) => ({ params: { slug } }))
+  const paths = posts.map(({ slug }) => ({ params: { 'project-slug': slug } }))
 
   return {
     paths,

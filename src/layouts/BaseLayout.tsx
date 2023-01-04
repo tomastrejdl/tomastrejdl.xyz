@@ -15,7 +15,7 @@ export default function BaseLayout({
       >
         {children}
       </main>
-      <Footer/>
+      <Footer />
       <MobileNavbar className="fixed right-0 bottom-0 left-0 z-20 p-2 md:hidden" />
     </>
   )

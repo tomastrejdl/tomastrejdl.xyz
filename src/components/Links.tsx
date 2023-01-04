@@ -2,11 +2,15 @@ import { type PropsWithChildren } from 'react'
 import Link, { type LinkProps } from 'next/link'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
+export interface ExternalLinkProps extends PropsWithChildren<LinkProps> {
+  className?: string
+}
+
 export function ExternalLink({
   children,
   className,
   ...props
-}: PropsWithChildren<LinkProps & { className?: string }>) {
+}: ExternalLinkProps) {
   return (
     <Link {...props} target={'_blank'} className={className}>
       {children}
@@ -15,11 +19,15 @@ export function ExternalLink({
   )
 }
 
+export interface InternalLinkProps extends PropsWithChildren<LinkProps> {
+  className?: string
+}
+
 export function InternalLink({
   children,
   className,
   ...props
-}: PropsWithChildren<LinkProps & { className?: string }>) {
+}: InternalLinkProps) {
   return (
     <Link {...props} className={className}>
       {children}

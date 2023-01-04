@@ -117,6 +117,8 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
   }
 }
 
+export type NotionCMSItemMedatada = Awaited<ReturnType<typeof getPageMetaData>>
+
 function getToday(dateString: string) {
   const months = [
     'January',

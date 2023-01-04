@@ -29,11 +29,11 @@ const links: { name: string; href: string; icon: JSX.Element }[] = [
   },
 ]
 
-const SocialLogos = () => {
+const SocialLogos = ({ className }: { className: string }) => {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (
-    <nav className="flex">
+    <nav className={`flex ${className}`}>
       {links.map(({ name, href, icon }) => (
         <div
           onMouseEnter={() => setSelected(name)}

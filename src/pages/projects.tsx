@@ -1,13 +1,11 @@
 import type { InferGetStaticPropsType } from 'next'
 import { NextSeo } from 'next-seo'
-import Image from 'next/image'
-import Link from 'next/link'
 import BaseLayout from '../layouts/BaseLayout'
 import { getAllPublished } from '../server/common/notion'
-import Balancer from 'react-wrap-balancer'
 import { useRouter } from 'next/router'
 import { InternalLink } from '../components/Links'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import ProjectCard from '../components/ProjectCard'
 
 export default function Index({
   items,
@@ -53,41 +51,7 @@ export default function Index({
         <ul className="mx-auto flex max-w-prose flex-col gap-24">
           {filteredItems.map((item, index) => (
             <li key={item.slug}>
-              <Link href={`/projects/${item.slug}`} className="group">
-                <div className="flex flex-col justify-center gap-4">
-                  {item.cover && (
-                    <Image
-                      src={item.cover.url}
-                      width={item.cover.width}
-                      height={item.cover.height}
-                      alt={item.cover.alt}
-                      className=" w-full rounded-md border border-neutral-300 bg-neutral-100 object-cover dark:border-neutral-500 dark:bg-neutral-700"
-                      priority={index < 5}
-                    />
-                  )}
-
-                  <div className="flex justify-between gap-8">
-                    <h2 className="text-2xl font-semibold group-hover:underline">
-                      <Balancer>{item.title}</Balancer>
-                    </h2>
-                    <div className="flex flex-col items-end justify-center gap-2 text-sm uppercase text-neutral-700 dark:text-neutral-400">
-                      <span className="whitespace-nowrap">
-                        {item.projectName}
-                      </span>
-                      <span className="whitespace-nowrap">
-                        {item.projectDuration.start.split('-')[0]}
-                        {item.projectDuration.end &&
-                          item.projectDuration.end.split('-')[0] !==
-                            item.projectDuration.start.split('-')[0] &&
-                          ` - ${item.projectDuration.end.split('-')[0]}`}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-neutral-700 dark:text-neutral-400">
-                    {item.description}
-                  </p>
-                </div>
-              </Link>
+              <ProjectCard item={item} priority={index <= 2} />
             </li>
           ))}
         </ul>
