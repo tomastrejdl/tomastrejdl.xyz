@@ -5,7 +5,7 @@ import { getAllPublished, getSingleItem } from '../../server/common/notion'
 import Image from 'next/image'
 import BaseLayout from '../../layouts/BaseLayout'
 import { NextSeo } from 'next-seo'
-import { InternalLink } from '../../components/Links'
+import { CustomLink } from '../../components/CustomLink'
 import { format } from 'date-fns'
 
 const components = {
@@ -65,13 +65,13 @@ export default function PostPage({
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="mr-2 text-base">Tags:</span>
             {metadata.tags.map((tag) => (
-              <InternalLink
+              <CustomLink
                 href={{ pathname: '/projects', query: { tags: tag } }}
                 key={tag}
                 className="-ml-2 rounded-md px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:text-neutral-200 dark:hover:bg-neutral-600"
               >
                 {tag}
-              </InternalLink>
+              </CustomLink>
             ))}
           </div>
         </aside>

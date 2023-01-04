@@ -1,6 +1,6 @@
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
-import { ExternalLink, InternalLink } from '../components/Links'
+import { CustomLink } from '../components/CustomLink'
 import Prose from '../components/Prose'
 import BaseLayout from '../layouts/BaseLayout'
 
@@ -36,9 +36,9 @@ export default function AboutPage() {
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2">
-                  <ExternalLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
+                  <CustomLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
                     Red Bull Basemet Top 10 finalist
-                  </ExternalLink>
+                  </CustomLink>
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   2021
@@ -49,7 +49,7 @@ export default function AboutPage() {
               </div>
               <p className="mt-2">
                 We entered with our smart mouse pad project{' '}
-                <InternalLink href="/projects/wrest">Wrest</InternalLink> and
+                <CustomLink href="/projects/wrest">Wrest</CustomLink> and
                 pitched it at the Global Final in Instanbul and made it to TOP
                 10 out of 4000 entries.
               </p>
@@ -57,9 +57,9 @@ export default function AboutPage() {
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2">
-                  <ExternalLink href="https://www-spolecenskaodpovednost-cz.translate.goog/jak-privest-vodu-do-pouste-jak-bojovat-s-dusevnim-onemocnenim-co-s-prectenymi-knihami-cesko-zna-nejlepsi-udrzitelne-projekty-pro-rok-2022/?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=en&_x_tr_pto=wapp">
+                  <CustomLink href="https://www-spolecenskaodpovednost-cz.translate.goog/jak-privest-vodu-do-pouste-jak-bojovat-s-dusevnim-onemocnenim-co-s-prectenymi-knihami-cesko-zna-nejlepsi-udrzitelne-projekty-pro-rok-2022/?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=en&_x_tr_pto=wapp">
                     Young leader
-                  </ExternalLink>
+                  </CustomLink>
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   2022
@@ -94,12 +94,12 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                 <span>Project</span>•
-                <ExternalLink
+                <CustomLink
                   href="https://getwrest.com"
                   className="text-neutral-600 dark:text-neutral-400"
                 >
                   Wrest
-                </ExternalLink>
+                </CustomLink>
               </div>
               <p></p>
             </li>
@@ -112,12 +112,12 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                 <span>Part-time</span>•
-                <ExternalLink
+                <CustomLink
                   href="https://qdesigners.co"
                   className="text-neutral-600 dark:text-neutral-400"
                 >
                   Q Designers
-                </ExternalLink>
+                </CustomLink>
               </div>
               <p></p>
             </li>
@@ -130,12 +130,12 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                 <span>Project</span>•
-                <ExternalLink
+                <CustomLink
                   href="https://chytratiaz.cz"
                   className="text-neutral-600 dark:text-neutral-400"
                 >
                   Smart Triage
-                </ExternalLink>
+                </CustomLink>
               </div>
               <p></p>
             </li>
@@ -148,12 +148,12 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                 <span>Part-time</span>•
-                <ExternalLink
+                <CustomLink
                   href="https://signosoft.com"
                   className="text-neutral-600 dark:text-neutral-400"
                 >
                   Signosoft
-                </ExternalLink>
+                </CustomLink>
               </div>
               <p></p>
             </li>

@@ -1,6 +1,6 @@
 import { ArrowUpIcon } from '@heroicons/react/24/outline'
 import Button from './Button'
-import { ExternalLink } from './Links'
+import { CustomLink } from './CustomLink'
 
 export default function Footer({ className }: { className?: string }) {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -20,15 +20,15 @@ export default function Footer({ className }: { className?: string }) {
         </Button>
       </div>
 
-      <div className="flex w-full flex-wrap items-baseline justify-center gap-2 text-xs text-neutral-600 dark:text-neutral-400">
+      <div className="flex w-full flex-wrap items-baseline justify-start gap-2 text-xs text-neutral-600 dark:text-neutral-400">
         <span>© 2023 Tomáš Trejdl</span>•
         <span>Designed and built in Prague</span>•
-        <ExternalLink
+        <CustomLink
           className="whitespace-nowrap underline hover:text-neutral-900 dark:hover:text-neutral-400"
           href="https://github.com/tomastrejdl/tomastrejdl.xyz"
         >
           Source on GitHub
-        </ExternalLink>
+        </CustomLink>
       </div>
     </footer>
   )

@@ -1,4 +1,4 @@
-import { InternalLink } from './Links'
+import { CustomLink } from './CustomLink'
 import Balancer from 'react-wrap-balancer'
 import Image from 'next/image'
 import type { NotionCMSItemMedatada } from '../server/common/notion'
@@ -13,7 +13,7 @@ export default function ProjectCard({
   const isActive = item.projectDuration.end === null
 
   return (
-    <InternalLink href={`/projects/${item.slug}`} className="group">
+    <CustomLink href={`/projects/${item.slug}`} className="group">
       <div className="relative flex flex-col justify-center gap-4">
         {item.cover && (
           <Image
@@ -27,11 +27,11 @@ export default function ProjectCard({
         )}
         {isActive && (
           <div className="absolute top-2 left-2 rounded-full bg-blue-600 px-3 py-1 text-sm text-white">
-            Active
+            Active project
           </div>
         )}
 
-        <div className="flex justify-between gap-8">
+        <div className="mx-auto flex w-full max-w-prose justify-between gap-8">
           <h2 className="text-xl font-semibold group-hover:underline sm:text-2xl">
             <Balancer>{item.title}</Balancer>
           </h2>
@@ -46,10 +46,10 @@ export default function ProjectCard({
             </span>
           </div>
         </div>
-        <p className="text-neutral-700 dark:text-neutral-400">
+        <p className="mx-auto w-full max-w-prose text-neutral-700 dark:text-neutral-400">
           {item.description}
         </p>
       </div>
-    </InternalLink>
+    </CustomLink>
   )
 }
