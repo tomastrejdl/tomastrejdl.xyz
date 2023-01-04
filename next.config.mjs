@@ -49,7 +49,7 @@ const config = {
       },
     ]
   },
-  redirects,
+  redirects: async () => redirects,
 }
 export default withBundleAnalyzer(withPWA(config))
 
