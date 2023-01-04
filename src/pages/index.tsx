@@ -106,7 +106,7 @@ const ProjectsSection = ({
     <ul className="mx-auto flex flex-col gap-24">
       {projects.map((item, index) => (
         <li key={item.slug}>
-          <ProjectCard item={item} priority={index <= 2} />
+          <ProjectCard item={item} priority={index == 0} />
         </li>
       ))}
     </ul>
