@@ -18,8 +18,8 @@ export default function ProjectCard({
         {item.cover && (
           <Image
             src={item.cover.url}
-            width={item.cover.width}
-            height={item.cover.height}
+            width={item.cover.width / 2}
+            height={item.cover.height / 2}
             alt={item.cover.alt}
             className=" w-full rounded-md border border-neutral-300 bg-neutral-100 object-cover dark:border-neutral-500 dark:bg-neutral-700"
             priority={priority}
