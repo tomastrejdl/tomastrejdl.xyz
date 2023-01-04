@@ -16,7 +16,7 @@ export default function MobileNavbar({ className }: { className: string }) {
       show={true}
       as="nav"
       appear
-      enter="duration-500 delay-1000 transition"
+      enter="duration-500 delay-500 transition"
       enterFrom="opacity-0 translate-y-40"
       enterTo={`opacity-1 translate-y-0 ${className}`}
     >

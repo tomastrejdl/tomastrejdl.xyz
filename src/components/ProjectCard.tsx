@@ -31,11 +31,11 @@ export default function ProjectCard({
           </div>
         )}
 
-        <div className="mx-auto flex w-full max-w-prose justify-between gap-8">
+        <div className="mx-auto flex w-full max-w-prose flex-col-reverse justify-between gap-2 sm:flex-row sm:gap-8">
           <h2 className="text-xl font-semibold group-hover:underline sm:text-2xl">
             <Balancer>{item.title}</Balancer>
           </h2>
-          <div className="flex flex-col items-end justify-center gap-2 text-sm uppercase text-neutral-700 dark:text-neutral-400">
+          <div className="flex flex-row justify-between gap-2 text-sm uppercase text-neutral-700 dark:text-neutral-400 sm:flex-col sm:items-end sm:justify-center">
             <span className="whitespace-nowrap">{item.projectName}</span>
             <span className="whitespace-nowrap">
               {item.projectDuration.start.split('-')[0]}

@@ -4,7 +4,6 @@ import {
   getAllPublished,
   type NotionCMSItemMedatada,
 } from '../server/common/notion'
-import { Transition } from '@headlessui/react'
 import HomepageLayout from '../layouts/HomepageLayout'
 import { CustomLink } from '../components/CustomLink'
 import MagicText from '../components/MagicText'
@@ -21,17 +20,10 @@ export default function HomePage({
 }
 
 const HeroSection = () => (
-  <Transition
-    show={true}
-    as="section"
-    appear
-    enter="duration-1000 transition-all"
-    enterFrom="opacity-0 min-h-[90dvh]"
-    enterTo="opacity-1 min-h-[60dvh] flex grow flex-col items-center justify-center"
-  >
+  <section className="flex min-h-[60dvh] grow flex-col items-center justify-center">
     <h1 className="text-center">
       <p className="block text-lg lg:text-xl">Hi, my name is Tomáš</p>
-      <p className="mt-8 inline-block text-3xl font-medium sm:text-4xl md:text-5xl lg:text-7xl lg:leading-snug">
+      <p className="mt-8 inline-block text-4xl font-medium sm:text-5xl md:text-6xl lg:text-7xl lg:leading-snug">
         I&apos;m a <MagicText>student</MagicText> <br />
         <MagicText>UX designer</MagicText>
       </p>
@@ -49,7 +41,7 @@ const HeroSection = () => (
         </span>
       </CustomLink>
     </p>
-  </Transition>
+  </section>
 )
 
 // const HeroSection = () => (
@@ -105,28 +97,20 @@ const ProjectsSection = ({
 }: {
   projects: NotionCMSItemMedatada[]
 }) => (
-  <Transition
-    show={true}
-    appear
-    enter="duration-500 delay-500 ease-out transition"
-    enterFrom="opacity-0 translate-y-64"
-    enterTo="opacity-100 translate-y-0"
-  >
-    <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
-      {/* <header className="mx-auto mb-4 flex w-full items-center justify-between">
+  <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+    {/* <header className="mx-auto mb-4 flex w-full items-center justify-between">
       <h2 className="uppercase text-neutral-500 dark:text-neutral-400">
         My latest projects
       </h2>
     </header> */}
-      <ul className="mx-auto flex flex-col gap-24">
-        {projects.map((item, index) => (
-          <li key={item.slug}>
-            <ProjectCard item={item} priority={index <= 2} />
-          </li>
-        ))}
-      </ul>
-    </section>
-  </Transition>
+    <ul className="mx-auto flex flex-col gap-24">
+      {projects.map((item, index) => (
+        <li key={item.slug}>
+          <ProjectCard item={item} priority={index <= 2} />
+        </li>
+      ))}
+    </ul>
+  </section>
 )
 export async function getStaticProps() {
   return {
