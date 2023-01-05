@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import Link from 'next/link'
 import { useState } from 'react'
+import { CustomLink } from './CustomLink'
 import ThemeToggle from './ThemeToggle'
 
 export const navigation = [
@@ -25,7 +25,7 @@ const DesktopMenu = () => {
 
   return (
     <>
-      <Link
+      <CustomLink
         href="/"
         className="relative -ml-2 flex items-start gap-2 px-3 py-2 text-lg font-semibold md:-ml-3"
         onMouseEnter={() => setSelected('name')}
@@ -48,7 +48,7 @@ const DesktopMenu = () => {
             />
           )}
         </AnimatePresence>
-      </Link>
+      </CustomLink>
       <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
         {navigation
           .filter((item) => !item.mobileOnly)
@@ -58,7 +58,7 @@ const DesktopMenu = () => {
               onMouseEnter={() => setSelected(item.name)}
               onMouseLeave={() => setSelected(null)}
             >
-              <Link
+              <CustomLink
                 href={item.href}
                 className="relative block px-3 py-2 text-base text-neutral-700 dark:text-neutral-300"
               >
@@ -79,7 +79,7 @@ const DesktopMenu = () => {
                     />
                   )}
                 </AnimatePresence>
-              </Link>
+              </CustomLink>
             </li>
           ))}
       </ul>

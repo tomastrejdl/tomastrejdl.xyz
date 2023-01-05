@@ -26,13 +26,13 @@ export default function ProjectCard({
           />
         )}
         {isActive && (
-          <div className="absolute top-2 left-2 rounded-full bg-blue-600 px-3 py-1 text-sm text-white">
+          <div className="absolute top-2 left-2 rounded-full bg-blue-600 px-3 py-1 text-xs text-white">
             Active project
           </div>
         )}
 
         <div className="mx-auto flex w-full max-w-prose flex-col-reverse justify-between gap-2 sm:flex-row sm:gap-8">
-          <h2 className="text-xl font-semibold group-hover:underline sm:text-2xl">
+          <h2 className="text-xl font-semibold decoration-dotted underline-offset-4 group-hover:underline sm:text-2xl">
             <Balancer>{item.title}</Balancer>
           </h2>
           <div className="flex flex-row justify-between gap-2 text-sm uppercase text-neutral-700 dark:text-neutral-400 sm:flex-col sm:items-end sm:justify-center">

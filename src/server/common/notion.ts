@@ -43,6 +43,7 @@ const itemSchema = z.object({
     Type: z.object({ select: z.object({ name: z.enum(CONTENT_TYPES) }) }),
     Tags: z.object({ multi_select: tagsSchema }),
     'Project duration': z.object({ date: dateSchema }),
+    Role: z.object({ rich_text: richTextSchema }),
   }),
 })
 
@@ -114,6 +115,7 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' '),
     projectDuration: item.properties['Project duration'].date,
+    role: item.properties.Role.rich_text.at(0)?.plain_text,
   }
 }
 

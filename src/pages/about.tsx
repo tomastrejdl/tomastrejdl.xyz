@@ -37,7 +37,7 @@ export default function AboutPage() {
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2">
                   <CustomLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
-                    Red Bull Basemet Top 10 finalist
+                    Red Bull Basemet Top 10 finalist
                   </CustomLink>
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
@@ -45,7 +45,15 @@ export default function AboutPage() {
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                Student innovation event organized by Red Bull
+                <span>
+                  Student innovation event organized by{' '}
+                  <CustomLink
+                    className="text-neutral-600 dark:text-neutral-400"
+                    href="https://basement.redbull.com"
+                  >
+                    Red Bull
+                  </CustomLink>
+                </span>
               </div>
               <p className="mt-2">
                 We entered with our smart mouse pad project{' '}
@@ -57,7 +65,7 @@ export default function AboutPage() {
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2">
-                  <CustomLink href="https://www-spolecenskaodpovednost-cz.translate.goog/jak-privest-vodu-do-pouste-jak-bojovat-s-dusevnim-onemocnenim-co-s-prectenymi-knihami-cesko-zna-nejlepsi-udrzitelne-projekty-pro-rok-2022/?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=en&_x_tr_pto=wapp">
+                  <CustomLink href="https://www.linkedin.com/feed/update/urn:li:activity:6986451499799171072/">
                     Young leader
                   </CustomLink>
                 </h3>
@@ -67,7 +75,15 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                Award by the Association of Social Responsibility Czech Republic
+                <span>
+                  Award by the{' '}
+                  <CustomLink
+                    className="text-neutral-600 dark:text-neutral-400"
+                    href="https://www-spolecenskaodpovednost-cz.translate.goog/jak-privest-vodu-do-pouste-jak-bojovat-s-dusevnim-onemocnenim-co-s-prectenymi-knihami-cesko-zna-nejlepsi-udrzitelne-projekty-pro-rok-2022/?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=en&_x_tr_pto=wapp"
+                  >
+                    Association of Social Responsibility Czech Republic
+                  </CustomLink>
+                </span>
               </div>
               <p className="mt-2">
                 Awarded to young leaders who, with the help of innovative and

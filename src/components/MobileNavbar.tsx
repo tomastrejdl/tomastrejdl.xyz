@@ -1,7 +1,7 @@
 import { Popover, Transition } from '@headlessui/react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
+import { CustomLink } from './CustomLink'
 import { navigation } from './Navbar'
 
 export default function MobileNavbar({ className }: { className: string }) {
@@ -45,12 +45,12 @@ export default function MobileNavbar({ className }: { className: string }) {
                 <ul className="space-y-1 px-2 pt-2 pb-3">
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <Link
+                      <CustomLink
                         href={item.href}
                         className="block rounded-md px-3 py-2 text-base font-medium text-neutral-800 focus:outline-none dark:text-neutral-200"
                       >
                         {item.name}
-                      </Link>
+                      </CustomLink>
                     </li>
                   ))}
                 </ul>

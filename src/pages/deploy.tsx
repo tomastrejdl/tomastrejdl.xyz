@@ -1,6 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
+import { CustomLink } from '../components/CustomLink'
 import EmptyLayout from '../layouts/EmptyLayout'
 
 export default function DeployPage() {
@@ -33,12 +33,12 @@ export default function DeployPage() {
       {status === 'authenticated' && (
         <>
           {session.user?.role == 'ADMIN' ? (
-            <Link
+            <CustomLink
               className="rounded-md bg-neutral-300 px-4 py-2 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800"
               href="https://api.vercel.com/v1/integrations/deploy/prj_JsseR5RAHkpAmlPiWs2pnRyQAAgN/kLXbr6tEpC"
             >
               Redeploy
-            </Link>
+            </CustomLink>
           ) : (
             <>
               You are not authorized to deploy

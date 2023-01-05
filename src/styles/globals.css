@@ -16,7 +16,7 @@
     @apply hover:magic-text inline-block font-medium text-blue-600 underline transition will-change-transform dark:text-blue-500;
   } */
   img {
-    @apply dark:opacity-80 transition-opacity duration-300;
+    @apply transition-opacity duration-300 dark:opacity-80;
   }
 }
 
@@ -55,4 +55,13 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
+
+.medium-zoom-overlay {
+  z-index: 99;
+}
+
+.medium-zoom-overlay + img {
+  z-index: 100;
+  border-radius: 0;
 }
