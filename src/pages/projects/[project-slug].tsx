@@ -102,11 +102,11 @@ export default function PostPage({
         </header>
         <MDXRemote {...mdxSource} components={components} />
         <hr />
-        <aside className="not-prose flex flex-col gap-4">
+        <footer className="not-prose flex flex-col gap-4 py-6">
           <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
-            Tags
+            See my other projects
           </h2>
-          <div className="flex flex-wrap items-center gap-2 text-sm">
+          <div className="-ml-1 flex flex-wrap items-center gap-2 text-sm">
             {metadata.tags.map((tag) => (
               <CustomLink
                 href={{ pathname: '/projects', query: { tags: tag } }}
@@ -117,7 +117,7 @@ export default function PostPage({
               </CustomLink>
             ))}
           </div>
-        </aside>
+        </footer>
       </Prose>
     </BaseLayout>
   )

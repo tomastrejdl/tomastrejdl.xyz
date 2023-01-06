@@ -55,6 +55,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .prose aside {
+    @apply my-6 flex gap-2 rounded bg-neutral-200 px-5 dark:bg-neutral-800;
+  }
+
+  .prose aside > .callout-emoji {
+    @apply my-5 text-xl;
+  }
 }
 
 .medium-zoom-overlay {

@@ -42,7 +42,7 @@
     "next-themes": "^0.2.1",
     "node-fetch": "^3.3.0",
     "nodemailer": "^6.8.0",
-    "notion-to-md": "^2.5.5",
+    "notion-to-md": "github:tomastrejdl/notion-to-md",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^0.2.4",
