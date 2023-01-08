@@ -78,11 +78,11 @@ export default function Footer({ className }: { className?: string }) {
 
       <section className="my-4 grid w-full max-w-prose grid-cols-1 gap-8 text-neutral-600 dark:text-neutral-400 sm:my-8 sm:grid-cols-3">
         {footerLinks.map((col) => (
-          <div>
+          <div key={col.title}>
             <h3 className="text-sm font-light uppercase">{col.title}</h3>
             <ul className="mt-2 flex flex-col gap-2">
               {col.links.map((link) => (
-                <li>
+                <li key={link.name}>
                   <CustomNavLink href={link.href}>{link.name}</CustomNavLink>
                 </li>
               ))}
