@@ -46,7 +46,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <ErrorBoundary showDialog>
           <ThemeProvider attribute="class">
             <div
-              className={`relative mx-auto flex min-h-screen w-full max-w-4xl flex-col p-4 selection:bg-amber-500 selection:text-black supports-[min-height:100dvh]:min-h-[100dvh] dark:selection:bg-amber-400 sm:p-6 lg:p-8 ${interVariable.className}`}
+              className={`relative mx-auto flex min-h-screen w-full max-w-4xl flex-col p-4 selection:bg-blue-600 selection:text-white supports-[min-height:100dvh]:min-h-[100dvh]  sm:p-6 lg:p-8 ${interVariable.className}`}
             >
               <Component {...pageProps} />
             </div>

@@ -14,10 +14,11 @@ export default function AboutPage() {
           <Image
             src="/img/tomastrejdl-headshot-no-bg.png"
             alt="Tomáš Trejdl photo"
-            width={3024 / 30}
-            height={4032 / 30}
+            width={3024}
+            height={4032}
             className="my-0 aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border bg-neutral-100 object-contain dark:border-neutral-700 dark:bg-neutral-800 sm:h-28 sm:w-28"
             priority={true}
+            sizes="112px"
           />
           <div>
             <h1 className="mb-0 text-2xl sm:text-4xl">Tomáš Trejdl</h1>
@@ -35,7 +36,7 @@ export default function AboutPage() {
           <ol className="list-none pl-0 sm:pl-4">
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
                   <CustomLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
                     Red Bull Basemet Top 10 finalist
                   </CustomLink>
@@ -64,7 +65,7 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
                   <CustomLink href="https://www.linkedin.com/feed/update/urn:li:activity:6986451499799171072/">
                     Young leader
                   </CustomLink>
@@ -103,7 +104,9 @@ export default function AboutPage() {
           <ol className="list-none pl-0 sm:pl-4">
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">UX/UI Designer</h3>
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  UX/UI Designer
+                </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   01/2021 - present
                 </span>
@@ -121,7 +124,7 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">UX Designer</h3>
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">UX Designer</h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   10/2020 - 11/2021
                 </span>
@@ -139,7 +142,9 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">UX/UI Designer</h3>
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  UX/UI Designer
+                </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   03/2020 - 06/2020
                 </span>
@@ -157,7 +162,9 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">Frontend Developer</h3>
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  Frontend Developer
+                </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   05/2017 - 10/2019
                 </span>
@@ -185,7 +192,7 @@ export default function AboutPage() {
           <ol className="list-none pl-0 sm:pl-4">
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
                   MSc. in Human-Computer Interaction
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
@@ -200,7 +207,9 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="mt-0 mb-2">BSc. Software Engineering</h3>
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  BSc. Software Engineering
+                </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   09/2016 - 06/2020
                 </span>

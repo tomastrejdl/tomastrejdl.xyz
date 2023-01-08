@@ -3,6 +3,7 @@ import { type DefaultSeoProps } from 'next-seo'
 const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
   title: 'Tomáš Trejdl - UX Designer and full-stack developer',
   description: 'UX Designer and full-stack developer',
+  canonical: 'https://www.tomastrejdl.xyz',
   openGraph: {
     type: 'website',
     locale: 'en_US',

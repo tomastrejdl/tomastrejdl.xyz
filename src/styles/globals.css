@@ -9,6 +9,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-neutral-50 text-neutral-900 transition-colors duration-300 dark:bg-neutral-900 dark:text-neutral-100;
   }
@@ -16,7 +20,7 @@
     @apply hover:magic-text inline-block font-medium text-blue-600 underline transition will-change-transform dark:text-blue-500;
   } */
   img {
-    @apply transition-opacity duration-300 dark:opacity-80;
+    @apply transition-opacity duration-300 dark:opacity-90;
   }
 }
 
@@ -62,6 +66,27 @@
 
   .prose aside > .callout-emoji {
     @apply my-5 text-xl;
+  }
+
+  .prose > figure.rehype-figure {
+    @apply lg:flex lg:flex-col;
+  }
+
+  .prose nav.toc {
+    /* @apply fixed top-40 left-[calc(50vw+(832px/2))] hidden xl:block right-0 max-w-xs pr-4; */
+    @apply hidden;
+  }
+
+  .prose nav.toc ol {
+    @apply list-none;
+  }
+
+  .prose nav.toc ol li {
+    @apply my-1 truncate;
+  }
+
+  .prose nav.toc ol a {
+    @apply whitespace-nowrap text-sm text-neutral-700 no-underline hover:text-neutral-500 dark:text-neutral-400 dark:hover:text-neutral-300;
   }
 }
 

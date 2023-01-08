@@ -5,7 +5,6 @@ import type { MdBlock } from 'notion-to-md/build/types'
 import { z } from 'zod'
 import { env } from '../../env/server.mjs'
 import remarkGfm from 'remark-gfm'
-import type { ImageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { createWriteStream, mkdirSync, readdirSync } from 'fs'
 import fetch from 'node-fetch'
 import { join } from 'path'
@@ -15,15 +14,63 @@ import rehypeSlug from 'rehype-slug'
 import rehypeImgSize from 'rehype-img-size'
 import sizeOf from 'image-size'
 import rehypeFigure from 'rehype-figure'
+import {
+  fetchFigmaImages,
+  getFigmaImageUrlsFromNotionMDBlocks,
+  getFileAndNodeIdFromFigmaUrl,
+  getImagesFromFigma,
+} from './figma'
+import rehypeToc from '@jsdevtools/rehype-toc'
+import { type Pluggable } from 'unified'
 
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
+
+export interface FetchedImage {
+  oldUrl: string
+  newUrl: string
+  width: number
+  height: number
+}
 
 const notion = new Client({ auth: env.NOTION_TOKEN })
 const n2m = new NotionToMarkdown({ notionClient: notion })
 
 const tagsSchema = z.object({ name: z.string() }).array().min(1)
-const richTextSchema = z.object({ plain_text: z.string() }).array().min(1)
+const richTextSchema = z
+  .object({
+    plain_text: z.string(),
+    annotations: z.object({
+      bold: z.boolean(),
+      italic: z.boolean(),
+      strikethrough: z.boolean(),
+      underline: z.boolean(),
+      code: z.boolean(),
+      color: z.enum([
+        'default',
+        'gray',
+        'brown',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'purple',
+        'pink',
+        'red',
+        'gray_background',
+        'brown_background',
+        'orange_background',
+        'yellow_background',
+        'green_background',
+        'blue_background',
+        'purple_background',
+        'pink_background',
+        'red_background',
+      ]),
+    }),
+  })
+  .array()
+  .min(1)
 const dateSchema = z.object({
   start: z.string(),
   end: z.string().nullish(),
@@ -34,7 +81,7 @@ const itemSchema = z.object({
   id: z.string(),
   created_time: z.string().datetime(),
   last_edited_time: z.string().datetime(),
-  cover: z.object({ file: z.object({ url: z.string() }) }),
+  cover: z.object({ file: z.object({ url: z.string() }) }).nullish(),
   properties: z.object({
     Published: z.object({ checkbox: z.boolean() }),
     Name: z.object({ title: richTextSchema }),
@@ -44,6 +91,8 @@ const itemSchema = z.object({
     Tags: z.object({ multi_select: tagsSchema }),
     'Project duration': z.object({ date: dateSchema }),
     Role: z.object({ rich_text: richTextSchema }),
+    'AI Summary': z.object({ rich_text: richTextSchema }),
+    'Cover image Figma Node URL': z.object({ url: z.string() }),
   }),
 })
 
@@ -89,11 +138,20 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
 
     return allTags
   }
+  const { fileId, nodeId } = getFileAndNodeIdFromFigmaUrl(
+    item.properties['Cover image Figma Node URL'].url
+  )
+  const renderedCoverImageURL = (
+    await getImagesFromFigma({ [fileId]: [nodeId] })
+  ).at(0)
 
-  const coverImage = (await fetchImages([item.cover.file.url])).at(0)
+  if (!renderedCoverImageURL)
+    throw Error('No cover image Figma Node URL found for item: ' + item.id)
+
+  item.properties['Cover image Figma Node URL'].url
+  const coverImage = (await fetchFigmaImages([renderedCoverImageURL])).at(0)
 
   if (!coverImage) throw Error('No cover image found for item: ' + item.id)
-
   return {
     id: item.id,
     title: item.properties.Name.title.at(0)?.plain_text,
@@ -105,17 +163,23 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
         item.properties.Name.title.at(0)?.plain_text + ' article cover image',
     },
     tags: getTags(item.properties.Tags.multi_select),
-    description: item.properties.Description.rich_text.at(0)?.plain_text,
+    description: {
+      plainText: joinRichText(item.properties.Description.rich_text),
+      mdx: await serializeMd(
+        annotateAndJoin(item.properties.Description.rich_text),
+        { disableTocPlugin: true }
+      ),
+    },
     created_time: getToday(item.created_time),
     last_edited_time: getToday(item.last_edited_time),
-    slug: item.properties.Slug.rich_text.at(0)?.plain_text,
-    projectName: item.properties.Slug.rich_text
-      .at(0)
-      ?.plain_text.split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' '),
+    slug: joinRichText(item.properties.Slug.rich_text),
+    projectName: joinRichText(item.properties.Slug.rich_text).replaceAll(
+      '-',
+      ' '
+    ),
     projectDuration: item.properties['Project duration'].date,
-    role: item.properties.Role.rich_text.at(0)?.plain_text,
+    role: joinRichText(item.properties.Role.rich_text),
+    aiSummary: joinRichText(item.properties['AI Summary'].rich_text),
   }
 }
 
@@ -190,7 +254,11 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
       imageUrls.push(
         ...block.parent
           .split('\n')
-          .map((p) => p.slice(block.parent.indexOf('(') + 1, -1))
+          .map((p) => {
+            const urlFromMd = p.split('](').at(1)?.slice(0, -1)
+            if (urlFromMd) return urlFromMd
+            else throw new Error('No url found in image md block')
+          })
           .filter((url) => url.length > 5)
       )
     }
@@ -202,27 +270,33 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
     return imageUrls
   }
 
+  // Images
   const imageUrls = mdblocks.map((block) => getImagesFromBlock(block)).flat()
-
   const newImageUrls = await fetchImages(imageUrls)
-
   newImageUrls.forEach(
     ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
   )
 
-  const mdxSource = await serialize(mdString, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeAutolinkHeadings,
-        rehypeCodeTitles,
-        rehypeSlug,
-        [rehypeImgSize, { dir: 'public' }],
-        rehypeFigure,
-      ],
-      development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
-    },
-  })
+  // Figma embeds
+  const { figmaImageUrls, originalLinks } =
+    await getFigmaImageUrlsFromNotionMDBlocks(mdblocks)
+
+  for (const { renderedImageUrl, nodeId, nodeName } of figmaImageUrls) {
+    mdString = mdString.replace(
+      `[link_preview](${
+        originalLinks.find((link) => link.nodeId === nodeId)?.originalUrl
+      })`,
+      `![${nodeName}](${renderedImageUrl})`
+    )
+  }
+
+  const newFigmaImageUrls = await fetchFigmaImages(figmaImageUrls)
+
+  newFigmaImageUrls.forEach(
+    ({ oldUrl, newUrl }) => (mdString = mdString.replace(oldUrl, newUrl))
+  )
+
+  const mdxSource = await serializeMd(mdString)
 
   return {
     metadata,
@@ -230,30 +304,10 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   }
 }
 
-export const getChangelogImageSrc = async (blockId: string) => {
-  const block = (await notion.blocks.retrieve({
-    block_id: blockId,
-  })) as ImageBlockObjectResponse
-
-  if (block.type !== 'image') {
-    throw new Error('Block is not an image')
-  }
-
-  const image = block.image
-
-  if (image.type === 'external') return image.external.url
-  else return image.file.url
-}
-
 async function fetchImages(imageUrls: string[]) {
   mkdirSync(join(process.cwd(), 'public', '_images'), { recursive: true })
 
-  const urls: Array<{
-    oldUrl: string
-    newUrl: string
-    width: number
-    height: number
-  }> = []
+  const urls: FetchedImage[] = []
 
   for (const url of imageUrls) {
     const imageFileNameFromUrl = url.slice(97, url.indexOf('?'))
@@ -278,7 +332,7 @@ async function fetchImages(imageUrls: string[]) {
         contentType[0] == undefined ||
         contentType[1] == undefined
       )
-        throw Error('Wront Content-Type')
+        throw Error('Wrong Content-Type')
 
       const [fileType] = contentType
       if (fileType !== 'image') throw Error('File is not an image')
@@ -301,4 +355,41 @@ async function fetchImages(imageUrls: string[]) {
   }
 
   return urls
+}
+
+function serializeMd(
+  mdString: string,
+  options: { disableTocPlugin?: boolean } = { disableTocPlugin: false }
+) {
+  const tocPlugin =
+    options.disableTocPlugin === true
+      ? ([rehypeToc, { headings: ['h2'] }] as Pluggable)
+      : ([] as Pluggable)
+
+  return serialize(mdString, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        rehypeCodeTitles,
+        [rehypeImgSize, { dir: 'public' }],
+        rehypeFigure,
+        tocPlugin,
+      ],
+      development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
+    },
+  })
+}
+
+function annotateAndJoin(richText: z.infer<typeof richTextSchema>): string {
+  return richText
+    .map((richTextBlock) =>
+      n2m.annotatePlainText(richTextBlock.plain_text, richTextBlock.annotations)
+    )
+    .join('')
+}
+
+function joinRichText(richText: z.infer<typeof richTextSchema>): string {
+  return richText.map((richTextBlock) => richTextBlock.plain_text).join('')
 }

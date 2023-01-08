@@ -57,7 +57,8 @@ export default withBundleAnalyzer(withPWA(config))
 const ContentSecurityPolicy = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.highlight.io;
-    worker-src 'self';
+    worker-src 'self' blob:;
+    frame-src 'self';
     child-src;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;

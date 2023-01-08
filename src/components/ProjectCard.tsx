@@ -1,7 +1,7 @@
-import { CustomLink } from './CustomLink'
 import Balancer from 'react-wrap-balancer'
 import Image from 'next/image'
 import type { NotionCMSItemMedatada } from '../server/common/notion'
+import { CustomNavLink } from './CustomNavLink'
 
 export default function ProjectCard({
   item,
@@ -13,16 +13,17 @@ export default function ProjectCard({
   const isActive = item.projectDuration.end === null
 
   return (
-    <CustomLink href={`/projects/${item.slug}`} className="group">
+    <CustomNavLink href={`/projects/${item.slug}`} className="group">
       <div className="relative flex flex-col justify-center gap-4">
         {item.cover && (
           <Image
             src={item.cover.url}
-            width={item.cover.width / 2}
-            height={item.cover.height / 2}
+            width={item.cover.width}
+            height={item.cover.height}
             alt={item.cover.alt}
-            className=" w-full rounded-md border border-neutral-300 bg-neutral-100 object-cover dark:border-neutral-500 dark:bg-neutral-700"
+            className=" w-full rounded-md object-cover"
             priority={priority}
+            sizes="(max-width: 768px) 100vw, 1000px"
           />
         )}
         {isActive && (
@@ -47,9 +48,9 @@ export default function ProjectCard({
           </div>
         </div>
         <p className="mx-auto w-full max-w-prose text-neutral-700 dark:text-neutral-400">
-          {item.description}
+          {item.description.plainText}
         </p>
       </div>
-    </CustomLink>
+    </CustomNavLink>
   )
 }

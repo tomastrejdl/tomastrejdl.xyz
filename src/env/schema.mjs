@@ -26,6 +26,7 @@ export const serverSchema = z.object({
   EMAIL_SERVER_PORT: z.string(),
   EMAIL_SERVER_USER: z.string(),
   EMAIL_SERVER_PASSWORD: z.string(),
+  FIGMA_TOKEN: z.string().length(45),
 })
 
 /**

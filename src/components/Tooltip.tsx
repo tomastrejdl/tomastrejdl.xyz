@@ -41,7 +41,7 @@ export default function Tooltip({
           onKeyDown={(e: KeyboardEvent) => {
             e.key === 'Enter' && onClick()
           }}
-          className={`flex items-center justify-center rounded-md focus-within:ring-1 focus:outline-none  ${className} ${
+          className={`flex items-center justify-center rounded-md focus-within:ring-1 focus:outline-none ${className} ${
             isOpen && 'bg-neutral-100 dark:bg-neutral-800'
           }`}
           {...props}
