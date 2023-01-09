@@ -16,7 +16,10 @@ import { DefaultSeo } from 'next-seo'
 import Head from 'next/head'
 import { env } from '../env/client.mjs'
 
-H.init('ve6j9wgp')
+H.init('ve6j9wgp', {
+  environment:
+    env.NEXT_PUBLIC_NODE_ENV === 'production' ? 'production' : 'development',
+})
 
 const interVariable = Inter({ display: 'swap', subsets: ['latin-ext'] })
 

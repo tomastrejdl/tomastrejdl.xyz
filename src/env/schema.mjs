@@ -36,6 +36,7 @@ export const serverSchema = z.object({
  */
 export const clientSchema = z.object({
   NEXT_PUBLIC_HOSTNAME: z.string().url(),
+  NEXT_PUBLIC_NODE_ENV: z.string(),
 })
 
 /**
@@ -46,4 +47,5 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   NEXT_PUBLIC_HOSTNAME: process.env.NEXT_PUBLIC_HOSTNAME,
+  NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
 }
