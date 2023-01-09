@@ -166,8 +166,7 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
     description: {
       plainText: joinRichText(item.properties.Description.rich_text),
       mdx: await serializeMd(
-        annotateAndJoin(item.properties.Description.rich_text),
-        { disableTocPlugin: true }
+        annotateAndJoin(item.properties.Description.rich_text)
       ),
     },
     created_time: getToday(item.created_time),
@@ -357,15 +356,7 @@ async function fetchImages(imageUrls: string[]) {
   return urls
 }
 
-function serializeMd(
-  mdString: string,
-  options: { disableTocPlugin?: boolean } = { disableTocPlugin: false }
-) {
-  const tocPlugin =
-    options.disableTocPlugin === true
-      ? ([rehypeToc, { headings: ['h2'] }] as Pluggable)
-      : ([] as Pluggable)
-
+function serializeMd(mdString: string) {
   return serialize(mdString, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
@@ -375,7 +366,7 @@ function serializeMd(
         rehypeCodeTitles,
         [rehypeImgSize, { dir: 'public' }],
         rehypeFigure,
-        tocPlugin,
+        [rehypeToc, { headings: ['h2'] }],
       ],
       development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
     },
