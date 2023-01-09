@@ -32,12 +32,13 @@ export default function Index({
       <h1 className="sr-only">Projects</h1>
 
       {tag !== '' && (
-        <div className="mx-auto mb-8 flex w-full max-w-prose items-center gap-4">
+        <div className="mx-auto mb-8 flex w-full max-w-prose flex-wrap items-center gap-4">
           Filtered tag:
           <span className="rounded-md bg-neutral-300 px-3 py-1 dark:bg-neutral-700">
             {tag.replaceAll('-', ' ')}
           </span>
           <CustomLink
+            isTextLink={false}
             href={{ query: { tags: '' } }}
             className="flex items-center gap-1 rounded-md px-3 py-1 text-blue-500 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-neutral-800"
           >
