@@ -3,8 +3,12 @@ import Image from 'next/image'
 import { CustomLink } from '../components/CustomLink'
 import Prose from '../components/Prose'
 import BaseLayout from '../layouts/BaseLayout'
+import { getPlaiceholder } from 'plaiceholder'
+import { type InferGetStaticPropsType } from 'next'
 
-export default function AboutPage() {
+export default function AboutPage({
+  imageProps,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BaseLayout className="items-center justify-center">
       <NextSeo title="About Me - Tomáš Trejdl" />
@@ -12,13 +16,12 @@ export default function AboutPage() {
       <Prose>
         <div className="mb-12 flex items-center gap-8">
           <Image
-            src="/img/tomastrejdl-headshot-no-bg.png"
             alt="Tomáš Trejdl photo"
-            width={3024}
-            height={4032}
             className="my-0 aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border bg-neutral-100 object-contain dark:border-neutral-700 dark:bg-neutral-800 sm:h-28 sm:w-28"
             priority={true}
             sizes="112px"
+            placeholder="blur"
+            {...imageProps}
           />
           <div>
             <h1 className="mb-0 text-2xl sm:text-4xl">Tomáš Trejdl</h1>
@@ -225,4 +228,19 @@ export default function AboutPage() {
       </Prose>
     </BaseLayout>
   )
+}
+
+export const getStaticProps = async () => {
+  const { base64, img } = await getPlaiceholder(
+    '/img/tomastrejdl-headshot-no-bg.png'
+  )
+
+  return {
+    props: {
+      imageProps: {
+        ...img,
+        blurDataURL: base64,
+      },
+    },
+  }
 }

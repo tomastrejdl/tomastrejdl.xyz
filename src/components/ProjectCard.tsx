@@ -24,6 +24,8 @@ export default function ProjectCard({
             className=" w-full rounded-md object-cover"
             priority={priority}
             sizes="(max-width: 768px) 100vw, 1000px"
+            placeholder="blur"
+            blurDataURL={item.cover.blurDataURL}
           />
         )}
         {isActive && (

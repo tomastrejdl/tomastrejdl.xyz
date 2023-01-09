@@ -10,6 +10,8 @@ const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
+import { withPlaiceholder } from '@plaiceholder/next'
+
 // @ts-check
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -51,7 +53,7 @@ const config = {
   },
   redirects: async () => redirects,
 }
-export default withBundleAnalyzer(withPWA(config))
+export default withPlaiceholder(withBundleAnalyzer(withPWA(config)))
 
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `

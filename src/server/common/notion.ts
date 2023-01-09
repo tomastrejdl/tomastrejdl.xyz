@@ -21,8 +21,8 @@ import {
   getImagesFromFigma,
 } from './figma'
 import rehypeToc from '@jsdevtools/rehype-toc'
-import { type Pluggable } from 'unified'
-
+import { getPlaiceholder } from 'plaiceholder'
+import rehypeImageBlurData from '../../utils/rehype-image-blur-data'
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
 
@@ -161,6 +161,7 @@ const getPageMetaData = async (item: z.infer<typeof itemSchema>) => {
       height: coverImage.height,
       alt:
         item.properties.Name.title.at(0)?.plain_text + ' article cover image',
+      blurDataURL: (await getPlaiceholder(coverImage.newUrl)).base64,
     },
     tags: getTags(item.properties.Tags.multi_select),
     description: {
@@ -367,6 +368,7 @@ function serializeMd(mdString: string) {
         [rehypeImgSize, { dir: 'public' }],
         rehypeFigure,
         [rehypeToc, { headings: ['h2'] }],
+        rehypeImageBlurData,
       ],
       development: false, // FIXME: When this resolves https://github.com/hashicorp/next-mdx-remote/issues/307
     },
