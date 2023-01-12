@@ -11,11 +11,8 @@ import { CustomLink } from '../../components/CustomLink'
 import { format } from 'date-fns'
 import Prose from '../../components/Prose'
 import mediumZoom from 'medium-zoom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import Button from '../../components/Button'
-import { Transition } from '@headlessui/react'
-import { NotionAISparkles } from '../../components/icons/NotionAISparkles'
 
 const components = {
   img: (props: any) => (
@@ -34,7 +31,7 @@ export default function PostPage({
   mdxSource,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { resolvedTheme } = useTheme()
-  const [isSummaryVisible, setIsSummaryVisible] = useState(false)
+  // const [isSummaryVisible, setIsSummaryVisible] = useState(false)
 
   useEffect(() => {
     const zoom = mediumZoom('[data-zoomable]', {
@@ -106,12 +103,12 @@ export default function PostPage({
               width={metadata.cover.width}
               height={metadata.cover.height}
               alt={metadata.cover.alt}
-              className="w-full rounded-md object-cover lg:w-[128%] lg:max-w-[128%] lg:self-center"
+              className="mb-0 w-full rounded-md object-cover lg:w-[128%] lg:max-w-[128%] lg:self-center"
               priority={true}
               sizes="100vw"
             />
           )}
-          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4">
+          {/* <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4">
             <Button
               onClick={() => setIsSummaryVisible(!isSummaryVisible)}
               className="w-full min-w-[16rem] bg-violet-600 text-white hover:bg-violet-500 dark:bg-violet-600 dark:hover:bg-violet-500 sm:w-auto"
@@ -141,7 +138,7 @@ export default function PostPage({
                 <CustomLink href="https://notion.so/ai">NotionAI</CustomLink>
               </div>
             </div>
-          </Transition>
+          </Transition> */}
         </header>
         <MDXRemote {...mdxSource} components={components} />
         <hr />
