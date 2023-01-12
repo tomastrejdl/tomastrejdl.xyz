@@ -64,9 +64,12 @@ export default function PostPage({
       />
       <Prose as="article">
         <header className="flex flex-col">
-          <span className="font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-            {metadata.projectName}
-          </span>
+          <div className="flex items-center justify-between text-neutral-500 dark:text-neutral-400">
+            <span className="font-semibold uppercase tracking-wider">
+              {metadata.projectName}
+            </span>
+            <span className="text-sm">{metadata.itemReadingTime.text}</span>
+          </div>
           <h1 className="mt-4">
             <Balancer>{metadata.title}</Balancer>
           </h1>

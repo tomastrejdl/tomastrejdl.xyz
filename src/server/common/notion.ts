@@ -23,6 +23,8 @@ import {
 import rehypeToc from '@jsdevtools/rehype-toc'
 import { getPlaiceholder } from 'plaiceholder'
 import rehypeImageBlurData from '../../utils/rehype-image-blur-data'
+import readingTime from 'reading-time'
+
 const CONTENT_TYPES = ['blog', 'projects'] as const
 type ContentType = typeof CONTENT_TYPES[number]
 
@@ -247,6 +249,7 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const metadata = await getPageMetaData(validatedItem)
   const mdblocks = await n2m.pageToMarkdown(item.id)
   let mdString = n2m.toMarkdownString(mdblocks)
+  const itemReadingTime = readingTime(mdString)
 
   const getImagesFromBlock = (block: MdBlock): string[] => {
     const imageUrls: string[] = []
@@ -299,7 +302,10 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const mdxSource = await serializeMd(mdString)
 
   return {
-    metadata,
+    metadata: {
+      ...metadata,
+      itemReadingTime,
+    },
     mdxSource,
   }
 }
