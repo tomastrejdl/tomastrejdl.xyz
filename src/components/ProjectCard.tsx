@@ -42,10 +42,11 @@ export default function ProjectCard({
             <span className="whitespace-nowrap">{item.projectName}</span>
             <span className="whitespace-nowrap">
               {item.projectDuration.start.split('-')[0]}
-              {item.projectDuration.end &&
-                item.projectDuration.end.split('-')[0] !==
-                  item.projectDuration.start.split('-')[0] &&
-                ` - ${item.projectDuration.end.split('-')[0]}`}
+              {item.projectDuration.end
+                ? item.projectDuration.end.split('-')[0] !==
+                    item.projectDuration.start.split('-')[0] &&
+                  ` - ${item.projectDuration.end.split('-')[0]}`
+                : ' - present'}
             </span>
           </div>
         </div>
