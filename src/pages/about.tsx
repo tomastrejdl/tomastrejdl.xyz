@@ -40,30 +40,21 @@ export default function AboutPage({
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2 !text-lg !font-medium">
-                  <CustomLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
-                    Red Bull Basemet Top 10 finalist
+                  <CustomLink href="https://forbes.cz/lists/frbs-30-pod-30-23/tomas-trejdl/">
+                    Forbes 30 under 30
                   </CustomLink>
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                  2021
+                  2023
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                <span>
-                  Student innovation event organized by{' '}
-                  <CustomLink
-                    className="text-neutral-600 dark:text-neutral-400"
-                    href="https://basement.redbull.com"
-                  >
-                    Red Bull
-                  </CustomLink>
-                </span>
+                <span>Forbes Česko</span>
               </div>
               <p className="mt-2">
-                We entered with our smart mouse pad project{' '}
-                <CustomLink href="/projects/wrest">Wrest</CustomLink> and
-                pitched it at the Global Final in Instanbul and made it to TOP
-                10 out of 4000 entries.
+                I was selected as one of the 30 most promising young people in
+                the Czech Republic in the fields of business, technology,
+                finance, art, design or sport.
               </p>
             </li>
             <li>
@@ -93,6 +84,35 @@ export default function AboutPage({
                 Awarded to young leaders who, with the help of innovative and
                 sustainable projects, contribute to the achievement of the
                 Sustainable Development Goals.
+              </p>
+            </li>
+            <li>
+              <div className="mt-6 flex items-baseline justify-between">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  <CustomLink href="https://aktualne.cvut.cz/en/reports/20220429-fel-student-develops-smart-mouse-pad-to-protect-against-sore-wrists">
+                    Red Bull Basemet Top 10 finalist
+                  </CustomLink>
+                </h3>
+                <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                  2021
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                <span>
+                  Student innovation event organized by{' '}
+                  <CustomLink
+                    className="text-neutral-600 dark:text-neutral-400"
+                    href="https://basement.redbull.com"
+                  >
+                    Red Bull
+                  </CustomLink>
+                </span>
+              </div>
+              <p className="mt-2">
+                We entered with our smart mouse pad project{' '}
+                <CustomLink href="/projects/wrest">Wrest</CustomLink> and
+                pitched it at the Global Final in Instanbul and made it to TOP
+                10 out of 4000 entries.
               </p>
             </li>
           </ol>
