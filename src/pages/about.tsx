@@ -49,9 +49,14 @@ export default function AboutPage({
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                <span>Forbes Česko</span>
+                <CustomLink
+                  className="text-neutral-600 dark:text-neutral-400"
+                  href="https://forbes.cz"
+                >
+                  Forbes Česko
+                </CustomLink>
               </div>
-              <p className="mt-2">
+              <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
                 I was selected as one of the 30 most promising young people in
                 the Czech Republic in the fields of business, technology,
                 finance, art, design or sport.
@@ -80,7 +85,7 @@ export default function AboutPage({
                   </CustomLink>
                 </span>
               </div>
-              <p className="mt-2">
+              <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
                 Awarded to young leaders who, with the help of innovative and
                 sustainable projects, contribute to the achievement of the
                 Sustainable Development Goals.
@@ -108,7 +113,7 @@ export default function AboutPage({
                   </CustomLink>
                 </span>
               </div>
-              <p className="mt-2">
+              <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
                 We entered with our smart mouse pad project{' '}
                 <CustomLink href="/projects/wrest">Wrest</CustomLink> and
                 pitched it at the Global Final in Instanbul and made it to TOP
@@ -223,10 +228,35 @@ export default function AboutPage({
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                <span className="whitespace-nowrap">
+                <CustomLink
+                  href="https://oi.fel.cvut.cz/en/master-specialization-human-computer-interaction"
+                  className="whitespace-nowrap text-neutral-600 dark:text-neutral-400 "
+                >
                   Czech Technical University in Prague
+                </CustomLink>
+              </div>
+            </li>
+            <li>
+              <div className="mt-6 flex items-baseline justify-between">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  Exchange semester
+                </h3>
+                <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                  02/2023 - 06/2023
                 </span>
               </div>
+              <div className="flex flex-wrap gap-2 !text-sm md:text-base">
+                <CustomLink
+                  href="https://www.newcastle.edu.au/"
+                  className="whitespace-nowrap text-neutral-600 dark:text-neutral-400 "
+                >
+                  University of Newcastle, Australia
+                </CustomLink>
+              </div>
+              <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
+                Courses: Design Thinking and Innovation • Experience Design
+                Studio • Entrepreneurship
+              </p>
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
@@ -238,9 +268,12 @@ export default function AboutPage({
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                <span className="whitespace-nowrap">
+                <CustomLink
+                  href="https://fit.cvut.cz/en/studies/programs-and-specializations/bachelor/4587-software-engineering"
+                  className="whitespace-nowrap text-neutral-600 dark:text-neutral-400 "
+                >
                   Czech Technical University in Prague
-                </span>
+                </CustomLink>
               </div>
             </li>
           </ol>
