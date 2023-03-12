@@ -32,8 +32,8 @@ export default function Footer({ className }: { className?: string }) {
           href: 'https://linkedin.com/in/tomastrejdl',
         },
         {
-          name: 'GitHub',
-          href: 'https://github.com/tomastrejdl',
+          name: 'Twitter',
+          href: 'https://twitter.com/tomastrejdl',
         },
         {
           name: 'Instagram',
