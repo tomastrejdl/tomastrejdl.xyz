@@ -95,24 +95,24 @@ const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
     },
     {
       rel: 'shortcut icon',
-      href: '/favicon.ico',
+      href: '/tomastrejdl-favicon.ico',
     },
     {
       rel: 'apple-touch-icon',
       sizes: '180x180',
-      href: '/icons/apple-touch-icon.png',
+      href: '/icons/apple-icon-180.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
-      sizes: '32x32',
-      href: '/icons/favicon-32x32.png',
+      sizes: '192x192',
+      href: '/icons/manifest-icon-192.maskable.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
-      sizes: '16x16',
-      href: '/icons/favicon-16x16.png',
+      sizes: '512x512',
+      href: '/icons/manifest-icon-512.maskable.png',
     },
   ],
 })

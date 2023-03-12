@@ -9,7 +9,8 @@
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "analyze": "ANALYZE=true next build && next start"
+    "analyze": "ANALYZE=true next build && next start",
+    "generateicons": "npx pwa-asset-generator public/icons/tomastrejdl-favicon-bw.png public/icons -m public/manifest.json --icon-only --opaque=false --padding=0 --path-override=/icons && png-to-ico public/icons/tomastrejdl-favicon-bw.png > public/tomastrejdl-favicon.ico"
   },
   "dependencies": {
     "@headlessui-float/react": "^0.10.1",
@@ -47,6 +48,7 @@
     "nodemailer": "^6.8.0",
     "notion-to-md": "github:tomastrejdl/notion-to-md",
     "plaiceholder": "^2.5.0",
+    "pwa-asset-generator": "^6.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^0.2.4",
@@ -76,6 +78,7 @@
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "eslint-config-prettier": "^8.5.0",
+    "png-to-ico": "^2.1.8",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
