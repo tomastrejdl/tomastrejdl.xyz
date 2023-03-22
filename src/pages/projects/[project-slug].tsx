@@ -13,6 +13,7 @@ import Prose from '../../components/Prose'
 import mediumZoom from 'medium-zoom'
 import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
 const components = {
   img: (props: any) => (
@@ -29,9 +30,15 @@ const components = {
 export default function PostPage({
   metadata,
   mdxSource,
+  projects,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { resolvedTheme } = useTheme()
   // const [isSummaryVisible, setIsSummaryVisible] = useState(false)
+
+  const currentProjectIndex = projects.findIndex((p) => p.id === metadata.id)
+  const nextProject = projects.at(
+    currentProjectIndex < projects.length - 1 ? currentProjectIndex + 1 : 0
+  )
 
   useEffect(() => {
     const zoom = mediumZoom('[data-zoomable]', {
@@ -142,20 +149,31 @@ export default function PostPage({
         </header>
         <MDXRemote {...mdxSource} components={components} />
         <hr />
-        <footer className="not-prose flex flex-col gap-4 py-6">
-          <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
-            See my other projects
-          </h2>
-          <div className="-ml-1 flex flex-wrap items-center gap-2 text-sm">
-            {metadata.tags.map((tag) => (
-              <CustomLink
-                href={{ pathname: '/projects', query: { tags: tag } }}
-                key={tag}
-                className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-600"
-              >
-                {tag}
-              </CustomLink>
-            ))}
+        <footer className="not-prose flex flex-col-reverse justify-between gap-12 py-6 sm:flex-row">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
+              See my other projects
+            </h2>
+            <div className="-ml-1 flex flex-wrap items-center gap-2 text-sm">
+              {metadata.tags.map((tag) => (
+                <CustomLink
+                  href={{ pathname: '/projects', query: { tags: tag } }}
+                  key={tag}
+                  className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                >
+                  {tag}
+                </CustomLink>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 sm:w-40">
+            <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
+              Next project
+            </h2>
+            <CustomLink href={`/projects/${nextProject?.slug}`}>
+              <span>{toTitleCase('' + nextProject?.projectName)}</span>
+              <ArrowRightIcon className="ml-1 inline-block h-4 w-4" />
+            </CustomLink>
           </div>
         </footer>
       </Prose>
@@ -171,6 +189,7 @@ export async function getStaticProps({
   return {
     props: {
       ...(await getSingleItem('projects', params['project-slug'])),
+      projects: await getAllPublished('projects'),
     },
     revalidate: 3000,
   }
@@ -184,4 +203,10 @@ export const getStaticPaths = async () => {
     paths,
     fallback: 'blocking',
   }
+}
+
+function toTitleCase(value: string): string {
+  return value.replace(/\w\S*/g, (txt) => {
+    return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+  })
 }
