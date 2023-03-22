@@ -112,6 +112,7 @@ const ProjectsSection = ({
     </ul>
   </section>
 )
+
 export async function getStaticProps() {
   return {
     props: {

@@ -235,6 +235,12 @@ export default function AboutPage({
                   Czech Technical University in Prague
                 </CustomLink>
               </div>
+              {/* <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
+                Courses: User Interface Design • Psychology in HCI • Data
+                Visualization <br />
+                Thesis topic: User interface for a smart mouse pad designed to
+                prevent carpal tunnel syndrome
+              </p> */}
             </li>
             <li>
               <div className="mt-6 flex items-baseline justify-between">
@@ -270,11 +276,23 @@ export default function AboutPage({
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                 <CustomLink
                   href="https://fit.cvut.cz/en/studies/programs-and-specializations/bachelor/4587-software-engineering"
-                  className="whitespace-nowrap text-neutral-600 dark:text-neutral-400 "
+                  className="whitespace-nowrap text-neutral-600 dark:text-neutral-400"
                 >
                   Czech Technical University in Prague
                 </CustomLink>
               </div>
+              {/* <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-300">
+                Courses: Web Application Design • Semantic Web • Software
+                Engineering Methods <br />
+                Thesis topic:{' '}
+                <CustomLink
+                  href="/projects/smart-home"
+                  className="text-neutral-600 dark:text-neutral-400"
+                >
+                  Smart home platform based on RaspberryPI using a WIFI
+                  connection
+                </CustomLink>
+              </p> */}
             </li>
           </ol>
         </section>
