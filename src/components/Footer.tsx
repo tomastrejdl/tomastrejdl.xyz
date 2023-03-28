@@ -28,17 +28,21 @@ export default function Footer({ className }: { className?: string }) {
       title: 'Follow me',
       links: [
         {
-          name: 'LinkedIn',
-          href: 'https://linkedin.com/in/tomastrejdl',
-        },
-        {
           name: 'Twitter',
           href: 'https://twitter.com/tomastrejdl',
         },
         {
-          name: 'Instagram',
-          href: 'https://instagram.com/tomastrejdl',
+          name: 'Dribbble',
+          href: 'https://dribbble.com/tomastrejdl',
         },
+        {
+          name: 'LinkedIn',
+          href: 'https://linkedin.com/in/tomastrejdl',
+        },
+        // {
+        //   name: 'Instagram',
+        //   href: 'https://instagram.com/tomastrejdl',
+        // },
       ],
     },
     {
