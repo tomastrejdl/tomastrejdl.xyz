@@ -14,7 +14,7 @@ export default function AboutPage({
       <NextSeo title="About Me - Tomáš Trejdl" />
 
       <Prose>
-        <div className="mb-12 flex items-center gap-8">
+        <div className="mb-12 flex flex-col items-center justify-between gap-8 md:flex-row">
           <Image
             alt="Tomáš Trejdl photo"
             className="my-0 aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border bg-neutral-100 object-contain dark:border-neutral-700 dark:bg-neutral-800 sm:h-28 sm:w-28"
@@ -28,6 +28,11 @@ export default function AboutPage({
             <p className="my-1 text-base font-semibold sm:text-lg">
               Student, UX Designer
             </p>
+          </div>
+          <div>
+            <CustomLink href="https://app.standardresume.co/assets-api/v2/pdf/03nFQ3lyfLsBg4ecJYYR4">
+              Download resume
+            </CustomLink>
           </div>
         </div>
         <section id="achievements">
