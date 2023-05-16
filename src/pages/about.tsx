@@ -141,7 +141,7 @@ export default function AboutPage({
                   UX/UI Designer
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                  01/2021 - present
+                  01/2021 - 05/2023
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
