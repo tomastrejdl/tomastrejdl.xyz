@@ -58,7 +58,7 @@ export default withPlaiceholder(withBundleAnalyzer(withPWA(config)))
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.highlight.io;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.highlight.io https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js blob:;
     worker-src 'self' blob:;
     frame-src 'self';
     child-src;
@@ -83,7 +83,7 @@ const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   {
     key: 'X-Frame-Options',
-    value: 'DENY',
+    value: 'SAMEORIGIN',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
   {
