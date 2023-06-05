@@ -94,5 +94,6 @@ export async function getStaticProps() {
     props: {
       articles: await getAllPublished('blog'),
     },
+    revalidate: 60
   }
 }

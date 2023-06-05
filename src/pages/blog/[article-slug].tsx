@@ -152,7 +152,7 @@ export async function getStaticProps({
       ...(await getSingleItem('blog', params['article-slug'])),
       articles: await getAllPublished('blog'),
     },
-    revalidate: 3000,
+    revalidate: 60,
   }
 }
 

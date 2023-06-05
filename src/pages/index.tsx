@@ -118,5 +118,6 @@ export async function getStaticProps() {
     props: {
       projects: await getAllPublished('projects'),
     },
+    revalidate: 60,
   }
 }

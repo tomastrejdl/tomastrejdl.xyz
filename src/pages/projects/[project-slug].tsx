@@ -192,7 +192,7 @@ export async function getStaticProps({
       ...(await getSingleItem('projects', params['project-slug'])),
       projects: await getAllPublished('projects'),
     },
-    revalidate: 3000,
+    revalidate: 60,
   }
 }
 
