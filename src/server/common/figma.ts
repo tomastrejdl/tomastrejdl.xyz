@@ -8,7 +8,7 @@ import fetch from 'node-fetch'
 import type { FetchedImage } from './notion'
 
 // Figma node URL example
-// https://www.figma.com/file/gMG1hRWjNISBoUxQBqoxkt/tomastrejdl.xyz?node-id=39%3A2006&t=jBoeq6rPjn01aU1p-4
+// https://www.figma.com/file/xxxxxxxxxxxxxxxxxxxxxx/xxx?node-id=xx%3Axxxx&t=xxxxxx
 
 const figma = Figma.Client({
   personalAccessToken: env.FIGMA_TOKEN,

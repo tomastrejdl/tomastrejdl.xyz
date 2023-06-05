@@ -24,17 +24,17 @@ const HeroSection = () => (
     <h1 className="text-center">
       <p className="block text-lg lg:text-xl">Hi, my name is Tomáš</p>
       <p className="mt-8 inline-block text-4xl font-medium sm:text-5xl md:text-6xl lg:text-7xl lg:leading-snug">
-        I&apos;m a <MagicText>student</MagicText> <br />
-        <MagicText>UX designer</MagicText>
+        I&apos;m a <MagicText>Digital</MagicText> <br />
+        <MagicText>Product Designer</MagicText>
       </p>
     </h1>
     <p className="relative mt-4 text-center text-lg">
-      Currently working on{' '}
+      Currently looking for work opportunities.{'  '}
       <CustomLink
-        href="/projects/wrest"
+        href="https://linkedin.com/in/tomastrejdl"
         className="hover:magic-text group inline-block font-medium text-blue-600 transition will-change-transform dark:text-blue-500"
       >
-        <span>Wrest</span>
+        <span>Get in touch</span>
         <span className="absolute -right-3 top-0.5 flex h-2 w-2">
           <span className="group-hover:magic absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
           <span className="group-hover:magic relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
@@ -106,7 +106,7 @@ const ProjectsSection = ({
     <ul className="mx-auto flex flex-col gap-24">
       {projects.map((item, index) => (
         <li key={item.slug}>
-          <ProjectCard item={item} priority={index == 0} />
+          <ProjectCard project={item} priority={index == 0} />
         </li>
       ))}
     </ul>

@@ -14,6 +14,7 @@ import mediumZoom from 'medium-zoom'
 import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { toTitleCase } from '../../utils/utils'
 
 const components = {
   img: (props: any) => (
@@ -27,7 +28,7 @@ const components = {
   a: (props: any) => <CustomLink {...props} />,
 }
 
-export default function PostPage({
+export default function ProjectPage({
   metadata,
   mdxSource,
   projects,
@@ -149,7 +150,7 @@ export default function PostPage({
         </header>
         <MDXRemote {...mdxSource} components={components} />
         <hr />
-        <footer className="not-prose flex flex-col-reverse justify-between gap-12 py-6 sm:flex-row">
+        <footer className="not-prose flex flex-col justify-between gap-12 py-6 sm:flex-row">
           <div className="flex flex-col gap-4">
             <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
               See my other projects
@@ -159,7 +160,7 @@ export default function PostPage({
                 <CustomLink
                   href={{ pathname: '/projects', query: { tags: tag } }}
                   key={tag}
-                  className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-600"
+                  className="rounded-md bg-neutral-200 px-2 py-1 text-sm text-neutral-700 no-underline hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-200"
                 >
                   {tag}
                 </CustomLink>
@@ -196,17 +197,13 @@ export async function getStaticProps({
 }
 
 export const getStaticPaths = async () => {
-  const posts = await getAllPublished('projects')
-  const paths = posts.map(({ slug }) => ({ params: { 'project-slug': slug } }))
+  const projects = await getAllPublished('projects')
+  const paths = projects.map(({ slug }) => ({
+    params: { 'project-slug': slug },
+  }))
 
   return {
     paths,
     fallback: 'blocking',
   }
-}
-
-function toTitleCase(value: string): string {
-  return value.replace(/\w\S*/g, (txt) => {
-    return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
-  })
 }

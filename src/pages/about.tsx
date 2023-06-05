@@ -26,7 +26,7 @@ export default function AboutPage({
           <div>
             <h1 className="mb-0 text-2xl sm:text-4xl">Tomáš Trejdl</h1>
             <p className="my-1 text-base font-semibold sm:text-lg">
-              Student, UX Designer
+              Digital Product Designer
             </p>
           </div>
           <div>
@@ -138,7 +138,7 @@ export default function AboutPage({
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2 !text-lg !font-medium">
-                  UX/UI Designer
+                  Product Designer
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   01/2021 - 05/2023
@@ -176,7 +176,7 @@ export default function AboutPage({
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2 !text-lg !font-medium">
-                  UX/UI Designer
+                  UX/UI Designer & Software Developer
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
                   03/2020 - 06/2020

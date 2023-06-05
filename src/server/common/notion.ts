@@ -284,10 +284,21 @@ export const getSingleItem = async (contentType: ContentType, slug: string) => {
   const { figmaImageUrls, originalLinks } =
     await getFigmaImageUrlsFromNotionMDBlocks(mdblocks)
 
+  // FIXME: This is a hotfix for the Figma API, which seems to return nodeIds in two diffferent formats
+  // The nodeId should start with two digits followed by a colon, but sometimes it's two digits followed by a dash
+  const hotfixedOriginalLinks = []
+  for (const originalLink of originalLinks) {
+    hotfixedOriginalLinks.push({
+      ...originalLink,
+      nodeId: originalLink.nodeId.replace(/-/g, ':'),
+    })
+  }
+
   for (const { renderedImageUrl, nodeId, nodeName } of figmaImageUrls) {
     mdString = mdString.replace(
       `[link_preview](${
-        originalLinks.find((link) => link.nodeId === nodeId)?.originalUrl
+        hotfixedOriginalLinks.find((link) => link.nodeId === nodeId)
+          ?.originalUrl
       })`,
       `![${nodeName}](${renderedImageUrl})`
     )

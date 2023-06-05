@@ -7,9 +7,7 @@ import { CustomLink } from '../components/CustomLink'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import ProjectCard from '../components/ProjectCard'
 
-export default function Index({
-  items,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Index({ projects }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const { tags } = router.query
 
@@ -17,16 +15,22 @@ export default function Index({
   if (typeof tags === 'object') tag = tags[0] ?? ''
   else tag = tags ?? ''
 
-  const filteredItems = items.filter((item) =>
-    tag === '' ? true : item.tags.includes(tag.replaceAll('-', ' '))
+  const filteredProjects = projects.filter((project) =>
+    tag === '' ? true : project.tags.includes(tag.replaceAll('-', ' '))
+  )
+
+  const sortedProjects = filteredProjects.sort(
+    (a, b) =>
+      new Date(b.projectDuration.start).getTime() -
+      new Date(a.projectDuration.start).getTime()
   )
 
   return (
     <BaseLayout>
       <NextSeo
         title="Projects - Tomáš Trejdl"
-        description={`My projects: ${items
-          .map((item) => item.title)
+        description={`My projects: ${projects
+          .map((project) => project.title)
           .join(', ')}`}
       />
       <h1 className="sr-only">Projects</h1>
@@ -48,11 +52,11 @@ export default function Index({
         </div>
       )}
 
-      {filteredItems.length > 0 ? (
+      {sortedProjects.length > 0 ? (
         <ul className="mx-auto flex flex-col gap-24">
-          {filteredItems.map((item, index) => (
-            <li key={item.slug}>
-              <ProjectCard item={item} priority={index <= 1} />
+          {sortedProjects.map((project, index) => (
+            <li key={project.slug}>
+              <ProjectCard project={project} priority={index <= 1} />
             </li>
           ))}
         </ul>
@@ -66,7 +70,7 @@ export default function Index({
 export async function getStaticProps() {
   return {
     props: {
-      items: await getAllPublished('projects'),
+      projects: await getAllPublished('projects'),
     },
   }
 }

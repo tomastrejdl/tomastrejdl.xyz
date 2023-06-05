@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle'
 export const navigation = [
   { name: 'Home', href: '/', mobileOnly: true },
   { name: 'Projects', href: '/projects' },
+  { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]
 
@@ -61,7 +62,7 @@ const DesktopMenu = () => {
               <CustomNavLink
                 boldWhenActive
                 href={item.href}
-                className="relative block px-3 py-2 text-base text-neutral-700 dark:text-neutral-300"
+                className="relative block px-3 py-2 text-base text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
               >
                 <span className="relative">{item.name}</span>
                 <AnimatePresence>

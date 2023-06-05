@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "tomastrejdl.xyz",
-  "id": "https://www.tomastrejdl.xyz/",
+  "id": "https://www.tomastrejdl.xyz",
   "description": "UX Designer",
   "short_name": "tomastrejdl",
   "start_url": "/",
