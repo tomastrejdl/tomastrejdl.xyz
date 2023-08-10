@@ -5,7 +5,6 @@ import {
   type NotionCMSItemMedatada,
 } from '../server/common/notion'
 import HomepageLayout from '../layouts/HomepageLayout'
-import { CustomLink } from '../components/CustomLink'
 import MagicText from '../components/MagicText'
 
 export default function HomePage({

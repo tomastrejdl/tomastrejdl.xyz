@@ -56,7 +56,6 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.1.0",
     "rehype-figure": "^1.0.1",
-    "rehype-img-size": "github:mass2527/rehype-img-size#patch-1",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.31.3",

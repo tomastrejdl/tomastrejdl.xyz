@@ -11,7 +11,7 @@ import { join } from 'path'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCodeTitles from 'rehype-code-titles'
 import rehypeSlug from 'rehype-slug'
-import rehypeImgSize from 'rehype-img-size'
+import rehypeImgSize from '../../utils/rehype-img-size'
 import sizeOf from 'image-size'
 import rehypeFigure from 'rehype-figure'
 import {
