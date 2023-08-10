@@ -28,7 +28,7 @@ const HeroSection = () => (
         <MagicText>Product Designer</MagicText>
       </p>
     </h1>
-    <p className="relative mt-4 text-center text-lg">
+    {/* <p className="relative mt-4 text-center text-lg">
       Currently looking for work opportunities.{'  '}
       <CustomLink
         href="https://linkedin.com/in/tomastrejdl"
@@ -40,7 +40,7 @@ const HeroSection = () => (
           <span className="group-hover:magic relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
         </span>
       </CustomLink>
-    </p>
+    </p> */}
   </section>
 )
 
