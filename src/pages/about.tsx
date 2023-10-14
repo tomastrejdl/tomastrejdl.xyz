@@ -26,7 +26,7 @@ export default function AboutPage({
           <div>
             <h1 className="mb-0 text-2xl sm:text-4xl">Tomáš Trejdl</h1>
             <p className="my-1 text-base font-semibold sm:text-lg">
-              Digital Product Designer
+              UX Designer
             </p>
           </div>
           <div>
@@ -138,6 +138,20 @@ export default function AboutPage({
             <li>
               <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2 !text-lg !font-medium">
+                  UX & HMI Designer
+                </h3>
+                <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                  09/2023 - present
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                <span>Full-time</span>• Škoda Auto
+              </div>
+              <p></p>
+            </li>
+            <li>
+              <div className="mt-6 flex items-baseline justify-between">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">
                   Product Designer
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
@@ -229,7 +243,7 @@ export default function AboutPage({
                   MSc. in Human-Computer Interaction
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                  09/2020 - present
+                  09/2020 - 09/2023
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">

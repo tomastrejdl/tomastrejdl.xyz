@@ -1,8 +1,8 @@
 import { type DefaultSeoProps } from 'next-seo'
 
 const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
-  title: 'Tomáš Trejdl - Digital Product Designer',
-  description: 'Digital Product Designer',
+  title: 'Tomáš Trejdl - UX Designer',
+  description: 'UX Designer',
   canonical: 'https://www.tomastrejdl.xyz',
   openGraph: {
     type: 'website',
@@ -10,7 +10,7 @@ const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
     url: 'https://www.tomastrejdl.xyz',
     siteName: 'Tomáš Trejdl',
     title: 'Tomáš Trejdl',
-    description: 'Digital Product Designer',
+    description: 'UX Designer',
     images: [
       {
         url: `${hostname}/api/og/tomastrejdl-og.png`,
@@ -36,7 +36,8 @@ const useNextSeoConfig = (hostname: string): Partial<DefaultSeoProps> => ({
     },
     {
       name: 'keywords',
-      content: 'tomas trejdl tomastrejdl ux designer uxdesigner digital product designer ui uidesigner',
+      content:
+        'tomas trejdl tomastrejdl ux designer uxdesigner digital product designer ui uidesigner',
     },
     {
       name: 'application-name',
