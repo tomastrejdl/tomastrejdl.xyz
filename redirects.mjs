@@ -89,6 +89,12 @@ const redirects = [
     destination: 'https://rsm.io/tomastrejdl',
     permanent: false,
   },
+  {
+    source: '/moje-cesta-do-ux',
+    destination:
+      'https://www.figma.com/proto/nAO33LMEnl7y5n6GWl1r1Q/Czechitas-UX-kurz?page-id=0%3A1&type=design&node-id=2-134&viewport=-3234%2C1637%2C0.42&t=NEIw3ju6pgfZ7ZuL-8&scaling=contain&starting-point-node-id=2%3A134&hotspot-hints=0&hide-ui=1',
+    permanent: false,
+  },
 ]
 
 export default redirects
