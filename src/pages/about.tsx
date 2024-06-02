@@ -30,7 +30,7 @@ export default function AboutPage({
             </p>
           </div>
           <div>
-            <CustomLink href="https://app.standardresume.co/assets-api/v2/pdf/03nFQ3lyfLsBg4ecJYYR4">
+            <CustomLink href="https://drive.google.com/file/d/1fxeDleM5lypVk16a52U_rXg1rAjVT8Iz/view?usp=sharing">
               Download resume
             </CustomLink>
           </div>
