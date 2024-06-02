@@ -7,7 +7,11 @@ module.exports = {
   darkMode: 'class',
   safelist: [...tailwindcssOriginSafelist],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        print: { raw: 'print' }, // => @media  print { ... }
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

@@ -68,7 +68,7 @@ export default function Footer({ className }: { className?: string }) {
     <footer
       className={`relative mb-16 mt-8 flex w-full flex-col items-center justify-center gap-4 md:mt-24 md:mb-0 ${className}`}
     >
-      <div className="pointer-events-none right-0 flex w-full items-center justify-end md:absolute md:bottom-0">
+      <div className="pointer-events-none right-0 flex w-full items-center justify-end md:absolute md:bottom-0 print:hidden">
         <Button
           onClick={scrollToTop}
           tooltip="Scroll to top"
@@ -80,7 +80,7 @@ export default function Footer({ className }: { className?: string }) {
         </Button>
       </div>
 
-      <section className="my-4 grid w-full max-w-prose grid-cols-1 gap-8 text-neutral-600 dark:text-neutral-400 sm:my-8 sm:grid-cols-3">
+      <section className="my-4 grid w-full max-w-prose grid-cols-1 gap-8 text-neutral-600 dark:text-neutral-400 sm:my-8 sm:grid-cols-3 print:hidden">
         {footerLinks.map((col) => (
           <div key={col.title}>
             <h3 className="text-sm font-light uppercase">{col.title}</h3>
@@ -96,10 +96,12 @@ export default function Footer({ className }: { className?: string }) {
       </section>
 
       <div className="flex w-full flex-wrap items-baseline justify-start gap-2 text-xs text-neutral-600 dark:text-neutral-400">
-        <span>© 2023 Tomáš Trejdl</span>•
-        <span>Designed and built in Prague</span>•
+        <span>© 2024 Tomáš Trejdl</span>
+        <span className="print:hidden">•</span>
+        <span className="print:hidden">Designed and built in Prague</span>
+        <span className="print:hidden">•</span>
         <CustomLink
-          className="whitespace-nowrap"
+          className="whitespace-nowrap print:hidden"
           href="https://github.com/tomastrejdl/tomastrejdl.xyz"
         >
           Source on GitHub

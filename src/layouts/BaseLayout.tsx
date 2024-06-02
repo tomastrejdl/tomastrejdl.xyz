@@ -10,13 +10,13 @@ export default function BaseLayout({
   return (
     <>
       <Navbar />
-        <main
-          className={`mx-auto mt-10 flex h-full w-full grow flex-col sm:mt-12 md:mt-16 lg:mt-20 ${className}`}
-        >
-          {children}
-        </main>
+      <main
+        className={`mx-auto mt-10 flex h-full w-full grow flex-col sm:mt-12 md:mt-16 lg:mt-20 ${className}`}
+      >
+        {children}
+      </main>
       <Footer />
-      <MobileNavbar className="fixed right-0 bottom-0 left-0 z-20 p-2 md:hidden" />
+      <MobileNavbar className="fixed right-0 bottom-0 left-0 z-20 p-2 md:hidden print:hidden" />
     </>
   )
 }

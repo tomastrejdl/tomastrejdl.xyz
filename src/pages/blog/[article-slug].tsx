@@ -109,8 +109,8 @@ export default function BlogArticlePage({
           </div>
         </header>
         <MDXRemote {...mdxSource} components={components} />
-        <hr />
-        <footer className="not-prose flex flex-col justify-between gap-12 py-6">
+        <hr className="print:hidden" />
+        <footer className="not-prose flex flex-col justify-between gap-12 py-6 print:hidden">
           <div className="flex flex-col gap-4">
             <h2 className="text-sm uppercase text-neutral-700 dark:text-neutral-400">
               Tags

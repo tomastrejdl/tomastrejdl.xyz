@@ -31,7 +31,7 @@ export default function ThemeToggle() {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (
-    <div className="pointer-events-none fixed right-0 top-0 left-0 z-30 mx-auto flex w-full max-w-4xl items-center justify-end p-4 sm:p-6 lg:p-8">
+    <div className="pointer-events-none fixed right-0 top-0 left-0 z-30 mx-auto flex w-full max-w-4xl items-center justify-end p-4 sm:p-6 lg:p-8 print:hidden">
       <button
         aria-label="Toggle Dark Mode"
         type="button"

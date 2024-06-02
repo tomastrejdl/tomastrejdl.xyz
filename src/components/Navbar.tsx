@@ -50,7 +50,7 @@ const DesktopMenu = () => {
           )}
         </AnimatePresence>
       </CustomNavLink>
-      <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 ">
+      <ul className="hidden md:ml-10 md:flex md:space-x-8 md:pr-4 print:hidden">
         {navigation
           .filter((item) => !item.mobileOnly)
           .map((item) => (

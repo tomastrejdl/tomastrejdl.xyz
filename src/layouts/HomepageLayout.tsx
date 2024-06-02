@@ -16,7 +16,7 @@ export default function HomepageLayout({
         {children}
       </main>
       <Footer />
-      <MobileNavbar className="fixed right-0 bottom-0 left-0 z-20 p-2 md:hidden" />
+      <MobileNavbar className="fixed right-0 bottom-0 left-0 z-20 p-2 md:hidden print:hidden" />
     </>
   )
 }
