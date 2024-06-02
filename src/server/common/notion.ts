@@ -327,7 +327,7 @@ async function fetchImages(imageUrls: string[]) {
   const urls: FetchedImage[] = []
 
   for (const url of imageUrls) {
-    const imageFileNameFromUrl = url.slice(97, url.indexOf('?'))
+    const imageFileNameFromUrl = url.slice(127, url.indexOf('?'))
     const filePath = join(
       process.cwd(),
       'public',
