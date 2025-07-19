@@ -137,11 +137,23 @@ export default function AboutPage({
           <ol className="list-none pl-0 sm:pl-4">
             <li>
               <div className="mt-6 flex items-baseline justify-between">
+                <h3 className="mt-0 mb-2 !text-lg !font-medium">UX Designer</h3>
+                <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                  07/2025 - present
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                <span>Full-time</span>• 2N
+              </div>
+              <p></p>
+            </li>
+            <li>
+              <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="mt-0 mb-2 !text-lg !font-medium">
                   UX & HMI Designer
                 </h3>
                 <span className="whitespace-nowrap font-mono !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
-                  09/2023 - present
+                  09/2023 - 06/2025
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 !text-sm text-neutral-600 dark:text-neutral-400 md:text-base">

@@ -28,12 +28,12 @@ const HeroSection = () => (
       </p>
     </h1>
     <p className="relative mt-4 text-center text-lg">
-      Currently working on HMI at{' '}
+      Currently working at{' '}
       <CustomLink
-        href="https://skoda-auto.cz"
+        href="https://2n.com"
         className="group inline-block font-medium text-blue-600 transition will-change-transform dark:text-blue-500"
       >
-        <span>Škoda Auto</span>
+        <span>2N</span>
         {/* <span className="absolute -right-3 top-0.5 flex h-2 w-2">
           <span className="group-hover:magic absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
           <span className="group-hover:magic relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
